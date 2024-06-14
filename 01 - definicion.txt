@@ -1,0 +1,30 @@
+1) pido el codigo principal
+quiero un programa en python que al iniciar registre en un archivo de log el inicio agregando una entrada de la forma "<fecha y hora actual> inicio de ejecución".
+Luego consulte en un Bot de telegram si hay nuevos mensajes. Por cada mensaje nuevo, validar si es una regla que se puede evaluar en Binance. Si se puede evaluar en Binance, agregarlo en un archivo de reglas y registrarlo en el archivo de log agregando una entrada de la forma "<fecha y hora actual> nueva regla <nueva regla>".
+Luego por cada regla en el archivo de reglas, evaluar si se cumple en Binance. Si se cumple, registrarlo en el archivo de log agregando una entrada de la forma "<fecha y hora actual> regla verificada <regla>", y notificar en el Bot de Telegram y eliminar la regla del archivo de reglas y antes de finalizar el programa enviar al Bot el nuevo contenido del archivo de reglas. Esperar un tiempo "PausaBinance" entre reglas.
+Si al verificar si la regla se cumple Binance ocurre un error, notificar en el Bot de Telegram y registrarlo en el archivo de log, detener la ejecución.
+Verificar si el archivo de log tiene entradas del mes anterior al actual, en cuyo caso moverlas a un archivo nuevo con nombre con nombre YYYYMM-log.txt y registrarlo en el archivo de log agregando una entrada de la forma "<fecha y hora actual> entradas del mes pasadas removidas".
+Luego, registrar en el archivo de log el fin de ejecución agregando una entrada de la forma "<fecha y hora actual> fin ejecución".
+Finalizar la ejecución.
+
+2) lo que devuelve no distingue entre validar la regla y evaluarla. Genero una segunda función que valide la regla como modificación del codigo recibido por 1)
+
+3) pido que me genere librería de Telegram
+quiero un libreria de python con metodo "def consultar_bot_telegram()" que devuelva una lista de los mensajes de un Bot de Telegram que no estaban en la ejecución anterior de mi programa, y con otro metodo "def notificar_en_bot_telegram(mensaje)" que envia a ese Bot un mensaje que se le pasa por parámetro
+
+4) le tuve que hacer correcciones por la lectura del ultimo id desde un archivo
+
+5) le pido: una librería de python que tenga un método para evaluar en Binance una regla recibida como cadena parámetro. La regle tiene que ser de la siguiente forma
+	"+"<par de monedas><"<" o ">"><valor con coma>
+	y que la evalúe en Binance devolviendo dos valores booleanos, el primero diga si la regla se pudo evaluar y el segundo valor el resultado de evaluar la regla
+	
+6)le pido
+función que determine si un archivo es mayor a determinado tamaño, lo renombre como logNNNN.txt donde NNNN es un numero incremental. Luego registre en una entrada de log el cambio de nombre
+
+
+
+(esto lo guardo para mas adelante)
+1- par < o > valor parámetro
+2- RSI 14 intervalo parámetro menor o mayor a parámetro
+3- par < o > EMA longitu parámetro
+le valúe en Binance y devuelva el valor booleano

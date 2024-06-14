@@ -1,0 +1,1079 @@
+2023-12-14 11:35:31.731535 log.txt renombrado a log0001.txt
+
+2023-12-14 11:35:31.740145 fin ejecución
+2023-12-14 12:18:06.865687 inicio de ejecución
+2023-12-14 12:18:25.032607 fin ejecución
+2023-12-14 12:22:04.487504 inicio de ejecución
+2023-12-14 12:22:10.141616 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-14 12:22:16.091863 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-14 12:22:21.777679 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-14 12:22:22.786152 fin ejecución
+2023-12-14 12:23:15.673386 inicio de ejecución
+2023-12-14 12:23:21.328003 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-14 12:23:26.947738 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-14 12:23:32.588248 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-14 12:23:39.383725 regla verificada +DOGE/USDT<0,102
+, resultado True
+2023-12-14 12:23:40.397896 fin ejecución
+2023-12-23 18:13:09.799175 inicio de ejecución
+2023-12-23 18:13:15.576044 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-23 18:13:21.350512 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-23 18:13:27.149217 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-23 18:13:28.157610 fin ejecución
+2023-12-23 18:32:00.445734 inicio de ejecución
+2023-12-23 18:32:06.439872 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-23 18:32:12.241322 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-23 18:32:18.006462 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-23 18:32:19.014993 fin ejecución
+2023-12-23 18:42:51.632903 inicio de ejecución
+2023-12-23 18:42:53.766936 Error: evaluar_regla() missing 1 required positional argument: 'regla'
+2023-12-23 18:42:53.770012 fin ejecución
+2023-12-23 18:43:52.342600 inicio de ejecución
+2023-12-23 18:43:53.352551 fin ejecución
+2023-12-23 18:45:36.118051 inicio de ejecución
+2023-12-23 18:45:42.040344 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-23 18:45:43.358103 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-23 18:45:44.674165 regla verificada +DOGE/USDT>0,102, resultado False
+2023-12-23 18:45:45.681421 fin ejecución
+2023-12-24 16:34:06.670702 inicio de ejecución
+2023-12-24 16:34:12.494505 nueva regla +ADA/USDT>0,62
+2023-12-24 16:34:12.820756 nueva regla +ADA/USDT<0,59
+2023-12-24 16:34:13.137925 nueva regla +ADA/USDT>0,6346
+2023-12-24 16:34:13.456154 nueva regla +OGN/USDT>0,18
+2023-12-24 16:34:13.779414 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-24 16:34:15.101242 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-24 16:34:16.424176 regla verificada +DOGE/USDT>0,102+ADA/USDT>0,62
+, resultado False
+2023-12-24 16:34:17.739625 regla verificada +ADA/USDT<0,59
+, resultado False
+2023-12-24 16:34:19.063054 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-24 16:34:20.380944 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-24 16:34:21.389394 fin ejecución
+2023-12-24 16:36:12.493461 inicio de ejecución
+2023-12-24 16:36:18.310953 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-24 16:36:19.630724 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-24 16:36:20.948572 regla verificada +DOGE/USDT>0,102+ADA/USDT>0,62
+, resultado False
+2023-12-24 16:36:22.266147 regla verificada +ADA/USDT<0,59
+, resultado False
+2023-12-24 16:36:23.584803 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-24 16:36:24.902638 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-24 16:36:25.913341 fin ejecución
+2023-12-24 16:41:26.514063 inicio de ejecución
+2023-12-24 16:41:28.717956 Error: module 'TelegramBot' has no attribute 'MiBotTelegramnotificar_en_bot_telegram'
+2023-12-24 16:41:28.724550 fin ejecución
+2023-12-24 16:42:17.091679 inicio de ejecución
+2023-12-24 16:42:22.868510 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-24 16:42:24.190096 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-24 16:42:25.529000 regla verificada +DOGE/USDT>0,102+ADA/USDT>0,62
+, resultado False
+2023-12-24 16:42:26.847683 regla verificada +ADA/USDT<0,59
+, resultado False
+2023-12-24 16:42:28.163447 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-24 16:42:29.485063 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-24 16:42:30.493806 fin ejecución
+2023-12-24 16:42:47.378474 inicio de ejecución
+2023-12-24 16:42:49.518945 Error: MiBotTelegram.notificar_en_bot_telegram() missing 1 required positional argument: 'mensaje'
+2023-12-24 16:42:49.525249 fin ejecución
+2023-12-24 16:45:40.575925 inicio de ejecución
+2023-12-24 16:45:42.710044 Error: MiBotTelegram.notificar_en_bot_telegram() missing 1 required positional argument: 'mensaje'
+2023-12-24 16:45:42.714620 fin ejecución
+2023-12-24 16:46:41.735680 inicio de ejecución
+2023-12-24 16:46:46.672854 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-24 16:46:47.995741 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-24 16:46:49.314529 regla verificada +DOGE/USDT>0,102+ADA/USDT>0,62
+, resultado False
+2023-12-24 16:46:50.629659 regla verificada +ADA/USDT<0,59
+, resultado False
+2023-12-24 16:46:51.950064 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-24 16:46:53.270061 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-24 16:46:54.279147 fin ejecución
+2023-12-24 16:46:59.019101 inicio de ejecución
+2023-12-24 16:47:01.125547 Error: MiBotTelegram.notificar_en_bot_telegram() missing 1 required positional argument: 'mensaje'
+2023-12-24 16:47:01.131980 fin ejecución
+2023-12-24 16:47:38.523837 inicio de ejecución
+2023-12-24 16:47:40.662820 Error: MiBotTelegram.notificar_en_bot_telegram() missing 1 required positional argument: 'mensaje'
+2023-12-24 16:47:40.668524 fin ejecución
+2023-12-24 16:49:00.019691 inicio de ejecución
+2023-12-24 16:49:02.231808 Error: MiBotTelegram.notificar_en_bot_telegram() missing 1 required positional argument: 'mensaje'
+2023-12-24 16:49:02.238831 fin ejecución
+2023-12-24 16:50:08.780111 inicio de ejecución
+2023-12-24 16:50:10.983012 Error: name 'regla' is not defined
+2023-12-24 16:50:10.989411 fin ejecución
+2023-12-24 16:50:41.375008 inicio de ejecución
+2023-12-24 16:50:48.539909 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-24 16:50:49.857476 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-24 16:50:51.180604 regla verificada +DOGE/USDT>0,102+ADA/USDT>0,62
+, resultado False
+2023-12-24 16:50:52.496816 regla verificada +ADA/USDT<0,59
+, resultado False
+2023-12-24 16:50:53.810243 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-24 16:50:55.125630 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-24 16:50:56.132911 fin ejecución
+2023-12-24 16:51:51.121481 inicio de ejecución
+2023-12-24 16:51:58.278769 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-24 16:51:59.596637 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-24 16:52:00.916917 regla verificada +DOGE/USDT>0,102+ADA/USDT>0,62
+, resultado False
+2023-12-24 16:52:02.265566 regla verificada +ADA/USDT<0,59
+, resultado False
+2023-12-24 16:52:03.590378 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-24 16:52:04.983798 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-24 16:52:05.995560 fin ejecución
+2023-12-24 16:52:38.991279 inicio de ejecución
+2023-12-24 16:52:45.927526 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-24 16:52:47.245954 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-24 16:52:48.563398 regla verificada +DOGE/USDT>0,102+ADA/USDT>0,62
+, resultado False
+2023-12-24 16:52:49.881953 regla verificada +ADA/USDT<0,59
+, resultado False
+2023-12-24 16:52:51.200030 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-24 16:52:52.519133 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-24 16:52:53.528563 fin ejecución
+2023-12-24 18:39:58.197216 inicio de ejecución
+2023-12-24 18:40:05.836113 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-24 18:40:07.155596 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-24 18:40:08.481706 regla verificada +DOGE/USDT>0,102+ADA/USDT>0,62
+, resultado False
+2023-12-24 18:40:09.804094 regla verificada +ADA/USDT<0,59
+, resultado False
+2023-12-24 18:40:11.122865 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-24 18:40:12.450512 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-24 18:40:13.462812 fin ejecución
+2023-12-24 18:40:56.610023 inicio de ejecución
+2023-12-24 18:41:03.590838 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-24 18:41:04.909069 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-24 18:41:06.222894 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-24 18:41:07.544765 regla verificada +ADA/USDT>0,62
+, resultado False
+2023-12-24 18:41:08.871431 regla verificada +ADA/USDT<0,59
+, resultado False
+2023-12-24 18:41:10.189523 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-24 18:41:11.509106 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-24 18:41:12.520332 fin ejecución
+2023-12-24 18:41:14.696060 inicio de ejecución
+2023-12-24 18:41:22.238715 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-24 18:41:23.557769 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-24 18:41:24.876024 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-24 18:41:26.197169 regla verificada +ADA/USDT>0,62
+, resultado False
+2023-12-24 18:41:27.516079 regla verificada +ADA/USDT<0,59
+, resultado False
+2023-12-24 18:41:28.839999 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-24 18:41:30.163278 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-24 18:41:31.175695 fin ejecución
+2023-12-27 00:03:31.222769 inicio de ejecución
+2023-12-27 00:03:47.291649 nueva regla +BTC/USDT<42100
+2023-12-27 00:03:51.436266 nueva regla +BTC/USDT<41900
+2023-12-27 00:03:51.935863 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-27 00:03:53.985049 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-27 00:03:55.579462 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-27 00:03:57.271550 regla verificada +ADA/USDT>0,62
+, resultado False
+2023-12-27 00:03:59.043568 regla verificada +ADA/USDT<0,59
+, resultado False
+2023-12-27 00:04:00.952995 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-27 00:04:02.881393 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-27 00:04:04.945260 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-27 00:04:06.882406 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-27 00:04:07.890363 fin ejecución
+2023-12-27 00:05:29.486576 inicio de ejecución
+2023-12-27 00:05:38.517328 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-27 00:05:39.994215 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-27 00:05:41.785120 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-27 00:05:43.181248 regla verificada +ADA/USDT>0,62
+, resultado False
+2023-12-27 00:05:44.570149 regla verificada +ADA/USDT<0,59
+, resultado False
+2023-12-27 00:05:45.938251 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-27 00:05:47.282888 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-27 00:05:48.684416 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-27 00:05:50.014020 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-27 00:05:51.022989 fin ejecución
+2023-12-27 00:15:15.431310 inicio de ejecución
+2023-12-27 00:15:23.562827 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-27 00:15:25.363651 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-27 00:15:26.753554 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-27 00:15:28.186737 regla verificada +ADA/USDT>0,62
+, resultado False
+2023-12-27 00:15:30.108794 regla verificada +ADA/USDT<0,59
+, resultado False
+2023-12-27 00:15:31.863148 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-27 00:15:33.284200 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-27 00:15:35.203366 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-27 00:15:37.244258 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-27 00:15:38.256049 fin ejecución
+2023-12-27 00:18:33.710989 inicio de ejecución
+2023-12-27 00:18:42.190688 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-27 00:18:43.535479 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-27 00:18:44.869601 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-27 00:18:46.308077 regla verificada +ADA/USDT>0,62
+, resultado False
+2023-12-27 00:18:47.658598 regla verificada +ADA/USDT<0,59
+, resultado False
+2023-12-27 00:18:49.140665 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-27 00:18:50.636109 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-27 00:18:52.049460 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-27 00:18:53.451197 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-27 00:18:54.459390 fin ejecución
+2023-12-27 00:18:58.188127 inicio de ejecución
+2023-12-27 00:19:09.861160 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-27 00:19:11.186604 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-27 00:19:12.516817 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-27 00:19:13.983902 regla verificada +ADA/USDT>0,62
+, resultado False
+2023-12-27 00:19:15.370661 regla verificada +ADA/USDT<0,59
+, resultado False
+2023-12-27 00:19:16.760804 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-27 00:19:18.172059 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-27 00:19:19.493405 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-27 00:19:20.867375 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-27 00:19:21.876327 fin ejecución
+2023-12-27 00:21:19.568579 inicio de ejecución
+2023-12-27 00:21:28.406740 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-27 00:21:29.819516 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-27 00:21:31.178753 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-27 00:21:32.604656 regla verificada +ADA/USDT>0,62
+, resultado False
+2023-12-27 00:21:34.023076 regla verificada +ADA/USDT<0,59
+, resultado False
+2023-12-27 00:21:36.011064 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-27 00:21:37.414567 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-27 00:21:38.899806 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-27 00:21:40.341247 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-27 00:21:41.351545 fin ejecución
+2023-12-27 00:25:18.882006 inicio de ejecución
+2023-12-27 00:25:26.137064 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-27 00:25:27.511990 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-27 00:25:28.945807 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-27 00:25:30.459696 regla verificada +ADA/USDT>0,62
+, resultado False
+2023-12-27 00:25:33.903201 regla verificada +ADA/USDT<0,59
+, resultado True
+2023-12-27 00:25:35.248912 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-27 00:25:36.573568 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-27 00:25:38.291364 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-27 00:25:39.708317 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-27 00:25:40.716936 fin ejecución
+2023-12-28 12:44:59.954942 inicio de ejecución
+2023-12-28 12:45:06.643945 nueva regla +ADA/USDT>0,635
+2023-12-28 12:45:07.568479 nueva regla +ADA/USDT>0,647
+2023-12-28 12:45:08.499987 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 12:45:10.418377 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 12:45:12.350004 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 12:45:13.675780 regla verificada +ADA/USDT>0,62
+, resultado False
+2023-12-28 12:45:15.004382 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-28 12:45:16.337025 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 12:45:17.662574 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 12:45:18.996696 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 12:45:20.321269 regla verificada +ADA/USDT>0,635
+, resultado False
+2023-12-28 12:45:21.662414 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 12:45:22.684992 fin ejecución
+2023-12-28 12:47:27.603448 inicio de ejecución
+2023-12-28 12:47:34.160125 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 12:47:35.493991 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 12:47:36.824914 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 12:47:38.159424 regla verificada +ADA/USDT>0,62
+, resultado False
+2023-12-28 12:47:39.486426 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-28 12:47:40.820621 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 12:47:42.150751 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 12:47:43.476745 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 12:47:44.811350 regla verificada +ADA/USDT>0,635
+, resultado False
+2023-12-28 12:47:46.140857 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 12:47:47.158228 fin ejecución
+2023-12-28 12:48:48.995998 inicio de ejecución
+2023-12-28 12:48:56.196195 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 12:48:57.565210 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 12:48:58.896947 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 12:49:00.234815 regla verificada +ADA/USDT>0,62
+, resultado False
+2023-12-28 12:49:01.563188 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-28 12:49:02.892817 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 12:49:04.226965 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 12:49:05.566972 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 12:49:06.935812 regla verificada +ADA/USDT>0,635
+, resultado False
+2023-12-28 12:49:08.320292 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 12:49:09.339335 fin ejecución
+2023-12-28 12:50:31.567495 inicio de ejecución
+2023-12-28 12:50:36.691308 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 12:50:38.020701 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 12:50:39.355980 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 12:50:40.685974 regla verificada +ADA/USDT>0,62
+, resultado False
+2023-12-28 12:50:42.017722 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-28 12:50:43.399665 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 12:50:44.732052 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 12:50:46.060021 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 12:50:47.443687 regla verificada +ADA/USDT>0,635
+, resultado False
+2023-12-28 12:50:49.388988 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 12:50:50.410836 fin ejecución
+2023-12-28 13:47:51.692769 inicio de ejecución
+2023-12-28 13:47:58.451183 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 13:47:59.785799 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 13:48:01.104799 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 13:48:03.717140 regla verificada +ADA/USDT>0,62
+, resultado True
+2023-12-28 13:48:05.038840 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-28 13:48:06.361033 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 13:48:07.684513 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 13:48:09.055229 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 13:48:10.386563 regla verificada +ADA/USDT>0,635
+, resultado False
+2023-12-28 13:48:12.019219 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 13:48:13.026473 fin ejecución
+2023-12-28 13:48:42.581715 inicio de ejecución
+2023-12-28 13:48:49.328186 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 13:48:51.240482 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 13:48:52.587192 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 13:48:54.003982 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-28 13:48:55.326694 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 13:48:56.648684 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 13:48:58.573608 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 13:49:00.506104 regla verificada +ADA/USDT>0,635
+, resultado False
+2023-12-28 13:49:01.890329 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 13:49:02.896551 fin ejecución
+2023-12-28 13:50:14.974640 inicio de ejecución
+2023-12-28 13:50:22.597361 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 13:50:23.919724 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 13:50:25.309130 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 13:50:26.676173 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-28 13:50:28.059998 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 13:50:29.388660 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 13:50:30.708064 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 13:50:32.052507 regla verificada +ADA/USDT>0,635
+, resultado False
+2023-12-28 13:50:33.383033 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 13:50:34.389170 fin ejecución
+2023-12-28 13:52:09.387873 inicio de ejecución
+2023-12-28 13:52:16.348851 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 13:52:17.681214 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 13:52:19.063139 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 13:52:20.486361 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-28 13:52:21.831486 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 13:52:23.162031 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 13:52:24.491732 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 13:52:26.402569 regla verificada +ADA/USDT>0,635
+, resultado False
+2023-12-28 13:52:28.320193 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 13:52:29.326920 fin ejecución
+2023-12-28 13:53:23.380147 inicio de ejecución
+2023-12-28 13:53:30.417495 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 13:53:31.820203 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 13:53:33.200460 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 13:53:34.586650 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-28 13:53:35.906259 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 13:53:37.224525 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 13:53:38.579025 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 13:53:39.910236 regla verificada +ADA/USDT>0,635
+, resultado False
+2023-12-28 13:53:41.287637 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 13:53:42.293319 fin ejecución
+2023-12-28 13:53:57.458291 inicio de ejecución
+2023-12-28 13:54:03.973226 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 13:54:05.457075 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 13:54:06.787155 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 13:54:08.111426 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-28 13:54:09.455406 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 13:54:10.832584 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 13:54:12.163029 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 13:54:13.545541 regla verificada +ADA/USDT>0,635
+, resultado False
+2023-12-28 13:54:14.865287 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 13:54:15.872726 fin ejecución
+2023-12-28 13:54:47.914150 inicio de ejecución
+2023-12-28 13:54:56.299251 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 13:54:57.629439 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 13:54:59.011171 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 13:55:00.345890 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-28 13:55:01.677790 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 13:55:03.058278 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 13:55:04.386417 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 13:55:05.719658 regla verificada +ADA/USDT>0,635
+, resultado False
+2023-12-28 13:55:07.665414 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 13:55:08.692325 fin ejecución
+2023-12-28 13:55:16.516827 inicio de ejecución
+2023-12-28 13:55:25.749811 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 13:55:27.076153 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 13:55:28.407786 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 13:55:29.751574 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-28 13:55:31.115529 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 13:55:32.448494 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 13:55:34.393664 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 13:55:35.723133 regla verificada +ADA/USDT>0,635
+, resultado False
+2023-12-28 13:55:37.059537 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 13:55:38.117926 fin ejecución
+2023-12-28 13:55:41.544213 inicio de ejecución
+2023-12-28 13:55:50.778759 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 13:55:52.112509 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 13:55:53.490973 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 13:55:54.823759 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-28 13:55:56.156367 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 13:55:57.535544 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 13:55:58.870053 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 13:56:00.249451 regla verificada +ADA/USDT>0,635
+, resultado False
+2023-12-28 13:56:01.638736 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 13:56:02.664417 fin ejecución
+2023-12-28 14:09:45.472409 inicio de ejecución
+2023-12-28 14:09:55.689823 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 14:09:57.023029 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 14:09:58.350518 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 14:09:59.671736 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-28 14:10:00.991557 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 14:10:02.312519 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 14:10:03.640961 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 14:10:04.968945 regla verificada +ADA/USDT>0,635
+, resultado False
+2023-12-28 14:10:06.287668 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 14:10:07.300435 fin ejecución
+2023-12-28 14:10:10.634987 inicio de ejecución
+2023-12-28 14:10:19.711633 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 14:10:21.032050 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 14:10:22.351541 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 14:10:23.672324 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-28 14:10:24.995470 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 14:10:26.312890 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 14:10:27.634655 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 14:10:28.964167 regla verificada +ADA/USDT>0,635
+, resultado False
+2023-12-28 14:10:30.880995 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 14:10:31.894455 fin ejecución
+2023-12-28 14:21:05.478460 inicio de ejecución
+2023-12-28 14:21:15.743294 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 14:21:17.063408 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 14:21:18.389024 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 14:21:19.709822 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-28 14:21:21.032061 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 14:21:22.359030 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 14:21:23.677237 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 14:21:24.998018 regla verificada +ADA/USDT>0,635
+, resultado False
+2023-12-28 14:21:26.316563 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 14:21:27.331196 fin ejecución
+2023-12-28 14:26:47.366920 inicio de ejecución
+2023-12-28 14:26:56.243866 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 14:26:57.569906 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 14:26:58.931383 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 14:27:00.850111 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-28 14:27:02.179896 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 14:27:04.168628 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 14:27:05.550946 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 14:27:06.912513 regla verificada +ADA/USDT>0,635
+, resultado False
+2023-12-28 14:27:08.838689 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 14:27:09.850261 fin ejecución
+2023-12-28 14:28:12.852084 inicio de ejecución
+2023-12-28 14:28:20.998947 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 14:28:22.378891 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 14:28:23.715342 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 14:28:25.080382 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-28 14:28:26.453631 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 14:28:27.786947 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 14:28:29.154393 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 14:28:30.508164 regla verificada +ADA/USDT>0,635
+, resultado False
+2023-12-28 14:28:31.917737 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 14:28:32.929317 fin ejecución
+2023-12-28 14:28:53.760782 inicio de ejecución
+2023-12-28 14:29:04.771063 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 14:29:06.096396 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 14:29:07.417851 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 14:29:08.740613 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-28 14:29:10.715926 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 14:29:12.033765 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 14:29:13.947747 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 14:29:15.863778 regla verificada +ADA/USDT>0,635
+, resultado False
+2023-12-28 14:29:17.207112 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 14:29:18.219415 fin ejecución
+2023-12-28 14:33:37.961332 inicio de ejecución
+2023-12-28 14:33:48.754388 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 14:33:50.204989 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 14:33:51.572694 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 14:33:52.901962 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-28 14:33:54.219450 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 14:33:55.548152 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 14:33:56.876067 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 14:33:58.194263 regla verificada +ADA/USDT>0,635
+, resultado False
+2023-12-28 14:33:59.520250 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 14:34:00.530556 fin ejecución
+2023-12-28 14:36:39.972968 inicio de ejecución
+2023-12-28 14:36:46.137159 nueva regla cBTC/USDT 1h 1.1
+2023-12-28 14:36:46.464634 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 14:36:47.807304 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 14:36:49.133847 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 14:36:50.604716 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-28 14:36:51.926950 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 14:36:53.247404 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 14:36:54.579337 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 14:36:55.903489 regla verificada +ADA/USDT>0,635
+, resultado False
+2023-12-28 14:36:57.221588 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 14:36:58.591544 regla verificada cBTC/USDT 1h 1.1
+, resultado False
+2023-12-28 14:36:59.609285 fin ejecución
+2023-12-28 14:39:10.976848 inicio de ejecución
+2023-12-28 14:39:16.833607 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 14:39:18.156727 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 14:39:19.477763 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 14:39:20.809149 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-28 14:39:22.130601 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 14:39:23.451811 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 14:39:24.773382 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 14:39:26.091161 regla verificada +ADA/USDT>0,635
+, resultado False
+2023-12-28 14:39:27.412775 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 14:39:28.836334 regla verificada cBTC/USDT 1h 1.1
+, resultado False
+2023-12-28 14:39:29.847461 fin ejecución
+2023-12-28 14:40:07.228780 inicio de ejecución
+2023-12-28 14:40:14.283477 nueva regla cBTC/USDT 1h 0.3
+2023-12-28 14:40:14.701584 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 14:40:16.026392 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 14:40:17.349181 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 14:40:18.676910 regla verificada +ADA/USDT>0,6346
+, resultado False
+2023-12-28 14:40:19.993956 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 14:40:21.312347 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 14:40:22.632517 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 14:40:23.957877 regla verificada +ADA/USDT>0,635
+, resultado False
+2023-12-28 14:40:25.296416 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 14:40:26.669279 regla verificada cBTC/USDT 1h 1.1
+, resultado False
+2023-12-28 14:40:29.187577 regla verificada cBTC/USDT 1h 0.3
+, resultado True
+2023-12-28 14:40:30.200080 fin ejecución
+2023-12-28 14:42:28.400737 inicio de ejecución
+2023-12-28 14:42:45.148500 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 14:42:46.479427 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 14:42:47.807721 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 14:42:50.227435 regla verificada +ADA/USDT>0,6346
+, resultado True
+2023-12-28 14:42:51.546124 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 14:42:52.868917 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 14:42:54.191129 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 14:42:56.619678 regla verificada +ADA/USDT>0,635
+, resultado True
+2023-12-28 14:42:57.937100 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 14:42:59.327710 regla verificada cBTC/USDT 1h 1.1
+, resultado False
+2023-12-28 14:43:00.338451 fin ejecución
+2023-12-28 14:44:56.054900 inicio de ejecución
+2023-12-28 14:45:03.128785 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 14:45:04.448129 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 14:45:05.768541 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 14:45:07.091860 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 14:45:08.418455 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 14:45:09.739636 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 14:45:11.059278 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 14:45:12.432882 regla verificada cBTC/USDT 1h 1.1
+, resultado False
+2023-12-28 14:45:13.441551 fin ejecución
+2023-12-28 14:45:48.940079 inicio de ejecución
+2023-12-28 14:45:54.753830 nueva regla cADA/USDT 1h 2.0
+2023-12-28 14:45:56.174544 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 14:45:57.541115 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 14:45:58.921788 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 14:46:00.304702 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 14:46:01.636296 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 14:46:02.960011 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 14:46:04.277893 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 14:46:05.922321 regla verificada cBTC/USDT 1h 1.1
+, resultado False
+2023-12-28 14:46:08.394835 regla verificada cADA/USDT 1h 2.0
+, resultado True
+2023-12-28 14:46:09.406786 fin ejecución
+2023-12-28 14:47:05.676068 inicio de ejecución
+2023-12-28 14:47:13.857565 nueva regla cADA/USDT 1h 2.0
+2023-12-28 14:47:14.179726 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 14:47:15.500624 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 14:47:16.832068 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 14:47:18.159604 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 14:47:19.491666 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 14:47:20.825177 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 14:47:22.143714 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 14:47:23.491035 regla verificada cBTC/USDT 1h 1.1
+, resultado False
+2023-12-28 14:47:26.006142 regla verificada cADA/USDT 1h 2.0
+, resultado True
+2023-12-28 14:47:27.017299 fin ejecución
+2023-12-28 14:51:02.886808 inicio de ejecución
+2023-12-28 14:51:09.714336 nueva regla cADA/USDT 1h 2.0
+2023-12-28 14:51:11.177710 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 14:51:12.496726 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 14:51:13.817736 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 14:51:15.139880 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 14:51:16.459915 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 14:51:17.781206 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 14:51:19.111736 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 14:51:20.495364 regla verificada cBTC/USDT 1h 1.1
+, resultado False
+2023-12-28 14:51:21.834803 regla verificada cADA/USDT 1h 2.0
+, resultado False
+2023-12-28 14:51:22.848466 fin ejecución
+2023-12-28 14:52:38.408281 inicio de ejecución
+2023-12-28 14:52:45.073046 nueva regla cBTC/USDT 15m 0.1
+2023-12-28 14:52:45.462400 nueva regla cBTC/USDT 15m 1.1
+2023-12-28 14:52:45.804139 regla verificada +BTC/USDT>46000
+, resultado False
+2023-12-28 14:52:47.129999 regla verificada +BTC/USDT<40000
+, resultado False
+2023-12-28 14:52:48.456637 regla verificada +DOGE/USDT>0,102
+, resultado False
+2023-12-28 14:52:49.788420 regla verificada +OGN/USDT>0,18
+, resultado False
+2023-12-28 14:52:51.124554 regla verificada +BTC/USDT<42100
+, resultado False
+2023-12-28 14:52:52.449325 regla verificada +BTC/USDT<41900
+, resultado False
+2023-12-28 14:52:53.790828 regla verificada +ADA/USDT>0,647
+, resultado False
+2023-12-28 14:52:55.137209 regla verificada cBTC/USDT 1h 1.1
+, resultado False
+2023-12-28 14:52:56.494385 regla verificada cADA/USDT 1h 2.0
+, resultado False
+2023-12-28 14:52:58.929966 regla verificada cBTC/USDT 15m 0.1
+, resultado True
+2023-12-28 14:53:00.309962 regla verificada cBTC/USDT 15m 1.1
+, resultado False
+2023-12-28 14:53:01.318813 fin ejecución
+2024-01-03 16:59:41.416051 inicio de ejecución
+2024-01-03 16:59:48.001833 nueva regla +BTC/USDT>44800
+2024-01-03 16:59:48.331000 nueva regla +SOL/USDT>110
+2024-01-03 16:59:48.661317 nueva regla +BTC/USDT<44800
+2024-01-03 16:59:48.986530 nueva regla +ADA/USDT<0.595
+2024-01-03 16:59:49.315484 nueva regla +BTC/USDT<43700
+2024-01-03 16:59:54.952732 regla verificada +OGN/USDT>0,18
+, resultado False
+2024-01-03 16:59:56.280656 regla verificada +ADA/USDT>0,647
+, resultado False
+2024-01-03 16:59:57.606114 regla verificada +OGN/USDT<0.1369
+, resultado False
+2024-01-03 16:59:59.004267 regla verificada +OGN/USDT<0.1440
+, resultado False
+2024-01-03 17:00:00.329137 regla verificada +ADA/USDT<0.597
+, resultado False
+2024-01-03 17:00:02.322552 regla verificada +BTC/USDT>45900
+, resultado False
+2024-01-03 17:00:03.672129 regla verificada +BTC/USDT>46200
+, resultado False
+2024-01-03 17:00:05.594039 regla verificada +SOL/USDT>117
+, resultado False
+2024-01-03 17:00:07.522207 regla verificada +LTC/USDT>76.5
+, resultado False
+2024-01-03 17:00:08.849599 regla verificada +SOL/USDT>110
+, resultado False
+2024-01-03 17:00:10.585106 regla verificada +ADA/USDT<0.595
+, resultado False
+2024-01-03 17:00:11.913157 regla verificada +BTC/USDT>44800
+, resultado False
+2024-01-03 17:00:13.240453 regla verificada +SOL/USDT>110
+, resultado False
+2024-01-03 17:00:15.908025 regla verificada +BTC/USDT<44800
+, resultado True
+2024-01-03 17:00:17.318129 regla verificada +ADA/USDT<0.595
+, resultado False
+2024-01-03 17:00:19.878279 regla verificada +BTC/USDT<43700
+, resultado True
+2024-01-03 17:00:20.890179 fin ejecución
+2024-01-20 21:05:09.996902 inicio de ejecución
+2024-01-20 21:05:17.167509 regla verificada +OGN/USDT>0,18
+, resultado False
+2024-01-20 21:05:18.489710 regla verificada +ADA/USDT>0,647
+, resultado False
+2024-01-20 21:05:19.810326 regla verificada +OGN/USDT<0.1369
+, resultado False
+2024-01-20 21:05:21.127759 regla verificada +OGN/USDT<0.1440
+, resultado False
+2024-01-20 21:05:22.444784 regla verificada +ADA/USDT<0.597
+, resultado False
+2024-01-20 21:05:23.762885 regla verificada +BTC/USDT>45900
+, resultado False
+2024-01-20 21:05:25.086187 regla verificada +BTC/USDT>46200
+, resultado False
+2024-01-20 21:05:26.408004 regla verificada +SOL/USDT>117
+, resultado False
+2024-01-20 21:05:27.725048 regla verificada +LTC/USDT>76.5
+, resultado False
+2024-01-20 21:05:29.044481 regla verificada +SOL/USDT>110
+, resultado False
+2024-01-20 21:05:30.365060 regla verificada +ADA/USDT<0.595
+, resultado False
+2024-01-20 21:05:31.687585 regla verificada +BTC/USDT>44800
+, resultado False
+2024-01-20 21:05:33.010222 regla verificada +SOL/USDT>110
+, resultado False
+2024-01-20 21:05:34.337375 regla verificada +ADA/USDT<0.595
+, resultado False
+2024-01-20 21:05:35.348588 fin ejecución
+2024-04-13 00:10:31.904261 inicio de ejecución
+2024-04-13 00:10:38.764643 regla verificada +OGN/USDT>0,18
+, resultado False
+2024-04-13 00:10:40.092425 regla verificada +ADA/USDT>0,647
+, resultado False
+2024-04-13 00:10:41.445765 regla verificada +OGN/USDT<0.1369
+, resultado False
+2024-04-13 00:10:42.808569 regla verificada +OGN/USDT<0.1440
+, resultado False
+2024-04-13 00:10:44.164845 regla verificada +ADA/USDT<0.597
+, resultado False
+2024-04-13 00:10:46.866336 regla verificada +BTC/USDT>45900
+, resultado True
+2024-04-13 00:10:49.630111 regla verificada +BTC/USDT>46200
+, resultado True
+2024-04-13 00:10:52.422477 regla verificada +SOL/USDT>117
+, resultado True
+2024-04-13 00:10:55.178456 regla verificada +LTC/USDT>76.5
+, resultado True
+2024-04-13 00:10:57.820875 regla verificada +SOL/USDT>110
+, resultado True
+2024-04-13 00:10:59.154918 regla verificada +ADA/USDT<0.595
+, resultado False
+2024-04-13 00:11:02.449923 regla verificada +BTC/USDT>44800
+, resultado True
+2024-04-13 00:11:05.038610 regla verificada +SOL/USDT>110
+, resultado True
+2024-04-13 00:11:06.363679 regla verificada +ADA/USDT<0.595
+, resultado False
+2024-04-13 00:11:07.382561 fin ejecución
+2024-04-13 00:12:46.675077 inicio de ejecución
+2024-04-13 00:12:53.272815 nueva regla +LTC/USDT>76,5
+2024-04-13 00:12:53.680467 regla verificada +OGN/USDT>0,18
+, resultado False
+2024-04-13 00:12:55.039842 regla verificada +ADA/USDT>0,647+LTC/USDT>76,5
+, resultado False
+2024-04-13 00:12:56.057787 fin ejecución

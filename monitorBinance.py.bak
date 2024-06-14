@@ -1,0 +1,77 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Oct 18 23:26:13 2023
+
+@author: htiraboschi
+"""
+
+import time
+from datetime import datetime
+import TelegramBot
+
+PAUSA_BINANCE = 1000 #pausa entre consultas a Binances. Unidad: milisegundos
+
+def registrar_log(mensaje):
+    with open('log.txt', 'a') as f:
+        f.write(f'{datetime.now()} {mensaje}\n')
+
+def consultar_bot_telegram(telgramMonitorBot):
+    return telgramMonitorBot.get_new_messages()
+    
+
+def validar_en_binance(regla):
+    # Implementa esta función para validar una regla en Binance
+    pass
+
+def evaluar_en_binance(regla):
+    # Implementa esta función para evaluar una regla en Binance
+    pass
+
+def notificar_en_bot_telegram(mensaje):
+    # Implementa esta función para notificar algo en el bot de Telegram
+    pass
+
+def mover_entradas_log():
+    # Implementa esta función para mover las entradas del log del mes pasado
+    pass
+
+# Inicio de ejecución
+registrar_log('inicio de ejecución')
+telgramMonitorBot = TelegramBot.TelegramBot()
+
+try:
+    # Consultar bot de Telegram
+    mensajes = consultar_bot_telegram(telgramMonitorBot)
+
+    for mensaje in mensajes:
+        # Verificar si el mensaje es una regla que se puede evaluar en Binance
+        if validar_en_binance(mensaje):
+            # Agregar la regla al archivo de reglas y registrar en el log
+            with open('reglas.txt', 'a') as f:
+                f.write(f'{mensaje}\n')
+            registrar_log(f'nueva regla {mensaje}')
+
+    # Evaluar cada regla en Binance
+    with open('reglas.txt', 'r') as f:
+        reglas = f.readlines()
+    with open('reglas.txt', 'w') as f:
+        for regla in reglas:
+            if evaluar_en_binance(regla):
+                # Si la regla se cumple, registrar en el log y notificar en el bot de Telegram
+                registrar_log(f'regla verificada {regla}')
+                notificar_en_bot_telegram(f'Regla verificada: {regla}')
+            else:
+                # Si la regla no se cumple, mantener la regla en el archivo
+                f.write(regla)
+            time.sleep(PAUSA_BINANCE / 1000)
+
+    # Mover entradas del log del mes pasado
+    mover_entradas_log()
+
+except Exception as e:
+    # Si ocurre un error, notificar en el bot de Telegram y registrar en el log
+    notificar_en_bot_telegram(f'Error: {str(e)}')
+    registrar_log(f'Error: {str(e)}')
+
+# Fin de ejecución
+registrar_log('fin ejecución')
