@@ -37,21 +37,23 @@ def parsear_regla(regla):
 
 def parsear_regla_caida(regla):
     # Definir el patrón de la regla
-    patron = r"^([cC])(\S*/\S*)\s(\S+)\s(\d+(\,\d+))$"
+    patron = r'(?i)(caída|caida)\s+(\S+)/(\S+)\s+(\S+)\s+(\d+(?:[.,]\d+)?)' #ejemplo: caida JASMY/USDT 1m 0,1
 
     # Intentar hacer coincidir el patrón con la cadena
     coincidencia = re.match(patron, regla)
     
     if coincidencia:
         # Si hay una coincidencia, extraer los grupos
-        operador, simbolo, intervalo, valor, temporal = coincidencia.groups()
+        par = coincidencia.group(2)+"/"+coincidencia.group(3)
+        intervalo = coincidencia.group(4)
+        valor = coincidencia.group(5)
         valor = float(valor.replace(',', '.'))
         reglaOk = True
     else:
         # Si no hay una coincidencia, establecer las variables en None
-        operador, simbolo, valor, intervalo, reglaOk = None, None,None, None, False
+        par, intervalo, valor, reglaOk = None,None, None, False
         
-    return operador, simbolo, valor, intervalo, reglaOk
+    return par, intervalo, valor, reglaOk
     
 def evaluar_regla(binance,regla):
     try:
@@ -74,7 +76,7 @@ def evaluar_regla(binance,regla):
         elif regla.startswith('c'):
             #regla de verificación de caídas de valor
             # Descomponer la regla
-            operador,par,valor, intervalo,reglaOk = parsear_regla_caida(regla)
+            par, intervalo, valor, reglaOk = parsear_regla_caida(regla)
             if not reglaOk:
                 return False, False
             else:

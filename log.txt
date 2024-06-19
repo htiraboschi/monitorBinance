@@ -1077,3 +1077,196 @@
 2024-04-13 00:12:55.039842 regla verificada +ADA/USDT>0,647+LTC/USDT>76,5
 , resultado False
 2024-04-13 00:12:56.057787 fin ejecución
+2024-06-14 23:17:22.903262 inicio de ejecución
+2024-06-14 23:18:15.093489 nueva regla +CHR/USDT>02752
+2024-06-14 23:18:15.412835 nueva regla +CHR/USDT>0,2752
+2024-06-14 23:18:16.858766 nueva regla +CHR/USDT<0,2633
+2024-06-14 23:18:17.182856 nueva regla +ICP/USDT<9,166
+2024-06-14 23:18:17.520042 nueva regla +HIGH/USDT<2,588
+2024-06-14 23:18:17.828391 nueva regla +JASMY/USDT<0,0324
+2024-06-14 23:19:28.303700 regla verificada +OGN/USDT>0,18
+, resultado False
+2024-06-14 23:19:29.114750 regla verificada +ADA/USDT>0,647
+, resultado False
+2024-06-14 23:19:31.112289 regla verificada +LTC/USDT>76,5
+, resultado True
+2024-06-14 23:19:31.917991 regla verificada +CHR/USDT>02752
+, resultado False
+2024-06-14 23:19:32.725978 regla verificada +CHR/USDT>0,2752
+, resultado False
+2024-06-14 23:19:33.527765 regla verificada +CHR/USDT<0,2633
+, resultado False
+2024-06-14 23:19:34.338975 regla verificada +ICP/USDT<9,166
+, resultado False
+2024-06-14 23:19:35.156544 regla verificada +HIGH/USDT<2,588
+, resultado False
+2024-06-14 23:19:35.965949 regla verificada +JASMY/USDT<0,0324
+, resultado False
+2024-06-14 23:19:41.239643 fin ejecución
+2024-06-14 23:33:59.136345 inicio de ejecución
+2024-06-14 23:36:06.851733 regla verificada +OGN/USDT>0,18
+, resultado False
+2024-06-14 23:36:07.649441 regla verificada +ADA/USDT>0,647
+, resultado False
+2024-06-14 23:36:08.472400 regla verificada +CHR/USDT>02752
+, resultado False
+2024-06-14 23:36:09.282829 regla verificada +CHR/USDT>0,2752
+, resultado False
+2024-06-14 23:36:10.089912 regla verificada +CHR/USDT<0,2633
+, resultado False
+2024-06-14 23:36:10.905692 regla verificada +ICP/USDT<9,166
+, resultado False
+2024-06-14 23:36:12.274979 regla verificada +HIGH/USDT<2,588
+, resultado False
+2024-06-14 23:36:13.079256 regla verificada +JASMY/USDT<0,0324
+, resultado False
+2024-06-14 23:36:21.257864 fin ejecución
+2024-06-14 23:37:08.641669 inicio de ejecución
+2024-06-14 23:38:49.200684 regla verificada +OGN/USDT>0,18
+, resultado False
+2024-06-14 23:38:50.000988 regla verificada +ADA/USDT>0,647
+, resultado False
+2024-06-14 23:38:50.804924 regla verificada +CHR/USDT>02752
+, resultado False
+2024-06-14 23:38:51.614337 regla verificada +CHR/USDT>0,2752
+, resultado False
+2024-06-14 23:38:52.420837 regla verificada +CHR/USDT<0,2633
+, resultado False
+2024-06-14 23:38:53.230430 regla verificada +ICP/USDT<9,166
+, resultado False
+2024-06-14 23:38:54.033273 regla verificada +HIGH/USDT<2,588
+, resultado False
+2024-06-14 23:38:54.840318 regla verificada +JASMY/USDT<0,0324
+, resultado False
+2024-06-14 23:38:55.355373 fin ejecución
+2024-06-14 23:39:32.266027 inicio de ejecución
+2024-06-14 23:43:19.790525 regla verificada +OGN/USDT>0,18
+, resultado False
+2024-06-14 23:43:20.592924 regla verificada +ADA/USDT>0,647
+, resultado False
+2024-06-14 23:43:21.393754 regla verificada +CHR/USDT>02752
+, resultado False
+2024-06-14 23:43:22.204617 regla verificada +CHR/USDT>0,2752
+, resultado False
+2024-06-14 23:43:23.013544 regla verificada +CHR/USDT<0,2633
+, resultado False
+2024-06-14 23:43:23.817419 regla verificada +ICP/USDT<9,166
+, resultado False
+2024-06-14 23:43:24.662582 regla verificada +HIGH/USDT<2,588
+, resultado False
+2024-06-14 23:43:25.471642 regla verificada +JASMY/USDT<0,0324
+, resultado False
+2024-06-14 23:43:25.990896 fin ejecución
+2024-06-14 23:43:36.455871 inicio de ejecución
+2024-06-14 23:44:22.043606 inicio de ejecución
+2024-06-14 23:46:09.114988 inicio de ejecución
+2024-06-14 23:48:29.795897 inicio de ejecución
+2024-06-14 23:51:13.521275 inicio de ejecución
+2024-06-14 23:53:10.881303 inicio de ejecución
+2024-06-14 23:55:34.046523 inicio de ejecución
+2024-06-14 23:56:18.891592 inicio de ejecución
+2024-06-14 23:58:52.244255 inicio de ejecución
+2024-06-14 23:58:53.342038 fin ejecución
+2024-06-14 23:59:07.191043 inicio de ejecución
+2024-06-15 00:01:45.737152 inicio de ejecución
+2024-06-15 00:01:46.784517 fin ejecución
+2024-06-15 00:02:07.757398 inicio de ejecución
+2024-06-15 00:03:03.997087 inicio de ejecución
+2024-06-15 00:05:38.159132 inicio de ejecución
+2024-06-15 00:07:14.891391 inicio de ejecución
+2024-06-15 00:11:05.496510 fin ejecución
+2024-06-15 00:11:19.573071 inicio de ejecución
+2024-06-15 00:21:16.657070 inicio de ejecución
+2024-06-15 00:23:06.299746 inicio de ejecución
+2024-06-15 00:23:07.371021 fin ejecución
+2024-06-15 00:23:29.683101 inicio de ejecución
+2024-06-15 00:24:27.439862 inicio de ejecución
+2024-06-18 21:32:17.203797 inicio de ejecución
+2024-06-18 21:33:16.426274 nueva regla +ETH/USDT<2912
+2024-06-18 21:33:33.703887 nueva regla +LTC/USDT<67,3
+2024-06-18 21:33:38.196642 nueva regla +JASMY/USDT>0,0324
+2024-06-18 21:33:44.947821 nueva regla +LTC/USDT>74
+2024-06-18 21:33:49.159587 nueva regla +BTC/USDT<65570
+2024-06-18 21:33:59.708869 nueva regla +BTC/USDT<64570
+2024-06-18 21:34:03.716087 nueva regla +DOGE/USDT>0,1237
+2024-06-18 21:36:09.691131 nueva regla caida JASMY/USDT 1m 0,1
+2024-06-18 21:36:28.524935 regla verificada +ETH/USDT<2912
+, resultado False
+2024-06-18 21:36:29.340977 regla verificada +LTC/USDT<67,3
+, resultado False
+2024-06-18 21:36:30.163029 regla verificada +JASMY/USDT>0,0324
+, resultado False
+2024-06-18 21:36:30.980088 regla verificada +LTC/USDT>74
+, resultado False
+2024-06-18 21:36:32.992547 regla verificada +BTC/USDT<65570
+, resultado True
+2024-06-18 21:36:34.398589 regla verificada +BTC/USDT<64570
+, resultado False
+2024-06-18 21:36:35.215023 regla verificada +DOGE/USDT>0,1237
+, resultado False
+2024-06-18 21:38:15.886315 regla verificada caida JASMY/USDT 1m 0,1
+, resultado True
+2024-06-18 21:38:16.396126 fin ejecución
+2024-06-18 21:38:23.006489 inicio de ejecución
+2024-06-18 21:38:57.788538 nueva regla caida JASMY/USDT 1m 0,1
+2024-06-18 21:39:09.485711 nueva regla caida JASMY/USDT 1m 0,2
+2024-06-18 21:39:20.414301 nueva regla caida JASMY/USDT 1m 1,1
+2024-06-18 21:39:21.324279 regla verificada +ETH/USDT<2912
+, resultado False
+2024-06-18 21:39:22.143845 regla verificada +LTC/USDT<67,3
+, resultado False
+2024-06-18 21:39:22.959423 regla verificada +JASMY/USDT>0,0324
+, resultado False
+2024-06-18 21:39:23.775814 regla verificada +LTC/USDT>74
+, resultado False
+2024-06-18 21:39:24.595240 regla verificada +BTC/USDT<64570
+, resultado False
+2024-06-18 21:39:25.419436 regla verificada +DOGE/USDT>0,1237
+, resultado False
+2024-06-18 21:39:41.431851 regla verificada caida JASMY/USDT 1m 0,1
+, resultado False
+2024-06-18 21:39:47.617186 regla verificada caida JASMY/USDT 1m 0,2
+, resultado False
+2024-06-18 21:39:50.302233 regla verificada caida JASMY/USDT 1m 1,1
+, resultado False
+2024-06-18 21:39:50.812474 fin ejecución
+2024-06-18 21:43:14.563108 inicio de ejecución
+2024-06-18 21:43:23.013632 regla verificada +ETH/USDT<2912
+, resultado False
+2024-06-18 21:43:23.853614 regla verificada +LTC/USDT<67,3
+, resultado False
+2024-06-18 21:43:24.673720 regla verificada +JASMY/USDT>0,0324
+, resultado False
+2024-06-18 21:43:25.494580 regla verificada +LTC/USDT>74
+, resultado False
+2024-06-18 21:43:26.316320 regla verificada +BTC/USDT<64570
+, resultado False
+2024-06-18 21:43:27.131275 regla verificada +DOGE/USDT>0,1237
+, resultado False
+2024-06-18 21:43:28.275228 regla verificada caida JASMY/USDT 1m 0,1
+, resultado False
+2024-06-18 21:43:29.116991 regla verificada caida JASMY/USDT 1m 0,2
+, resultado False
+2024-06-18 21:43:30.843729 regla verificada caida JASMY/USDT 1m 1,1
+, resultado False
+2024-06-18 21:43:31.355599 fin ejecución
+2024-06-18 21:45:12.746151 inicio de ejecución
+2024-06-18 21:45:20.444091 regla verificada +ETH/USDT<2912
+, resultado False
+2024-06-18 21:45:21.259988 regla verificada +LTC/USDT<67,3
+, resultado False
+2024-06-18 21:45:22.075215 regla verificada +JASMY/USDT>0,0324
+, resultado False
+2024-06-18 21:45:22.888315 regla verificada +LTC/USDT>74
+, resultado False
+2024-06-18 21:45:23.706804 regla verificada +BTC/USDT<64570
+, resultado False
+2024-06-18 21:45:24.521800 regla verificada +DOGE/USDT>0,1237
+, resultado False
+2024-06-18 21:45:26.657861 regla verificada caida JASMY/USDT 1m 0,1
+, resultado True
+2024-06-18 21:45:28.804921 regla verificada caida JASMY/USDT 1m 0,2
+, resultado True
+2024-06-18 21:45:29.648558 regla verificada caida JASMY/USDT 1m 1,1
+, resultado False
+2024-06-18 21:45:30.157445 fin ejecución
