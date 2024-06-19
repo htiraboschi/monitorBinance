@@ -36,8 +36,28 @@ def parsear_regla(regla):
     return operador, simbolo, valor, reglaOk
 
 def parsear_regla_caida(regla):
-    # Definir el patrón de la regla
+    # Definir el patrón de la regla con una expresión regular
     patron = r'(?i)(caída|caida)\s+(\S+)/(\S+)\s+(\S+)\s+(\d+(?:[.,]\d+)?)' #ejemplo: caida JASMY/USDT 1m 0,1
+
+    # Intentar hacer coincidir el patrón con la cadena
+    coincidencia = re.match(patron, regla)
+    
+    if coincidencia:
+        # Si hay una coincidencia, extraer los grupos
+        par = coincidencia.group(2)+"/"+coincidencia.group(3)
+        intervalo = coincidencia.group(4)
+        valor = coincidencia.group(5)
+        valor = float(valor.replace(',', '.'))
+        reglaOk = True
+    else:
+        # Si no hay una coincidencia, establecer las variables en None
+        par, intervalo, valor, reglaOk = None,None, None, False
+        
+    return par, intervalo, valor, reglaOk
+
+def parsear_regla_subida(regla):
+    # Definir el patrón de la regla con una expresión regular
+    patron = r'(?i)(subida)\s+(\S+)/(\S+)\s+(\S+)\s+(\d+(?:[.,]\d+)?)' #ejemplo: subida JASMY/USDT 1m 0,1
 
     # Intentar hacer coincidir el patrón con la cadena
     coincidencia = re.match(patron, regla)
@@ -81,6 +101,14 @@ def evaluar_regla(binance,regla):
                 return False, False
             else:
                 return True, verificar_caida(binance, par, intervalo, valor)
+        elif regla.startswith('s'):
+            #regla de verificación de subidas de valor
+            # Descomponer la regla
+            par, intervalo, valor, reglaOk = parsear_regla_subida(regla)
+            if not reglaOk:
+                return False, False
+            else:
+                return True, verificar_subida(binance, par, intervalo, valor)
             
     except:
         return False, False
@@ -100,6 +128,14 @@ def verificar_caida(binance, par, duracion, caidaPorcentual):
     cierre = ultimo_periodo[4]
     variacion_real = ((cierre - high) / high) * 100
     return variacion_real < -caidaPorcentual
+
+def verificar_subida(binance, par, duracion, subidaPorcentual):
+    ohlcv = binance.fetch_ohlcv(par, timeframe=duracion)
+    ultimo_periodo = ohlcv[-1]
+    low = ultimo_periodo[3]
+    cierre = ultimo_periodo[4]
+    variacion_real = ((cierre - low) / low) * 100
+    return variacion_real > subidaPorcentual
 
 def registrar_log(mensaje):
     with open(ARCHIVO_LOG, 'a') as f:
@@ -140,7 +176,7 @@ try:
     for mensaje in mensajes:
         #reemplazo un "." por ","
         mensaje = mensaje.replace(".", ",")
-        if mensaje.startswith('+') or mensaje.startswith('c'):
+        if mensaje.startswith('+') or mensaje.startswith('c') or mensaje.startswith('s'):
             # Verificar si el mensaje es una regla que se puede evaluar en Binance
             if validar_en_binance(binance,mensaje):
                 # Agregar la regla al archivo de reglas y registrar en el log
