@@ -19,7 +19,7 @@ LOG_MAXIMO = 1024 #tamaño máximo del archivo de log (en kilobytes) antes de se
 
 def parsear_regla(regla):
     # Definir el patrón de la regla
-    patron = r"\+(\w+\/\w+)([<>])([\d,]+)"
+    patron = r"\+(\w+\/\w+)\s*([<>])\s*([\d,]+)"
 
     # Intentar hacer coincidir el patrón con la cadena
     coincidencia = re.match(patron, regla)
