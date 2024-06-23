@@ -144,7 +144,7 @@ def evaluar_regla(binance,regla):
             if not reglaOk:
                 return False, False
             else:
-                return True, verificar_RSI(binance, par, intervalo, relacion, valor)
+                return True, verificar_RSI(par, intervalo, relacion, valor)
             
     except:
         return False, False
@@ -173,7 +173,7 @@ def verificar_subida(binance, par, duracion, subidaPorcentual):
     variacion_real = ((cierre - low) / low) * 100
     return variacion_real > subidaPorcentual
 
-def calcular_rsi(binance, par, intervalo='1h', periodo=14):
+def calcular_rsi(par, intervalo='1h', periodo=14):
     try:
         handler = TA_Handler(
         symbol=par.replace('/',''),
@@ -187,8 +187,8 @@ def calcular_rsi(binance, par, intervalo='1h', periodo=14):
         print(f"Error al calcular el RSI: {e}")
         return None
 
-def verificar_RSI(binance, par, intervalo, relacion, valor):
-    RSI = calcular_rsi(binance, par, intervalo, periodo=14)
+def verificar_RSI(par, intervalo, relacion, valor):
+    RSI = calcular_rsi(par, intervalo, periodo=14)
     if relacion == comparacion.MENOR:
         return RSI < valor
     else:
