@@ -12,11 +12,18 @@ import ccxt
 import re
 import os
 import platform
+from enum import Enum #para enumerados mayor, menor, igual
+from tradingview_ta import TA_Handler, Interval, Exchange
 
 PAUSA_BINANCE = 500 #pausa entre consultas a Binances. Unidad: milisegundos
 ARCHIVO_LOG = "log.txt"
 LOG_MAXIMO = 1024 #tamaño máximo del archivo de log (en kilobytes) antes de ser cortado
 
+class comparacion(Enum):
+    MAYOR = 1
+    IGUAL = 2
+    MENOR =3
+    
 def parsear_regla(regla):
     # Definir el patrón de la regla
     patron = r"\+(\w+\/\w+)\s*([<>])\s*([\d,]+)"
@@ -75,6 +82,27 @@ def parsear_regla_subida(regla):
         
     return par, intervalo, valor, reglaOk
     
+def parsear_regla_RSI(regla):
+    # Definir el patrón de la regla con una expresión regular
+    patron = r'(?i)(RSI)\s+(\S+)/(\S+)\s+(\S+)\s*([<>])\s*(\d+(?:[.,]\d+)?)' #ejemplo: RSI LTC/USDT 15m <41
+
+    # Intentar hacer coincidir el patrón con la cadena
+    coincidencia = re.match(patron, regla)
+    
+    if coincidencia:
+        # Si hay una coincidencia, extraer los grupos
+        par = coincidencia.group(2)+"/"+coincidencia.group(3)
+        intervalo = coincidencia.group(4)
+        relacion = comparacion.MAYOR if coincidencia.group(5) == '>' else comparacion.MENOR
+        valor = coincidencia.group(6)
+        valor = float(valor.replace(',', '.'))
+        reglaOk = True
+    else:
+        # Si no hay una coincidencia, establecer las variables en None
+        par, intervalo, relacion, valor, reglaOk = None, None, None, None, False
+        
+    return par, intervalo, relacion, valor, reglaOk
+
 def evaluar_regla(binance,regla):
     try:
         if regla.startswith('+'):
@@ -109,10 +137,18 @@ def evaluar_regla(binance,regla):
                 return False, False
             else:
                 return True, verificar_subida(binance, par, intervalo, valor)
+        elif regla.startswith('R'):
+            #RSI
+            # Descomponer la regla
+            par, intervalo, relacion, valor, reglaOk = parsear_regla_RSI(regla)
+            if not reglaOk:
+                return False, False
+            else:
+                return True, verificar_RSI(binance, par, intervalo, relacion, valor)
             
     except:
         return False, False
-    
+
 def validar_en_binance(binance,regla):
     reglaValida , reglaResultado = evaluar_regla(binance,regla)
     return reglaValida
@@ -136,6 +172,27 @@ def verificar_subida(binance, par, duracion, subidaPorcentual):
     cierre = ultimo_periodo[4]
     variacion_real = ((cierre - low) / low) * 100
     return variacion_real > subidaPorcentual
+
+def calcular_rsi(binance, par, intervalo='1h', periodo=14):
+    try:
+        handler = TA_Handler(
+        symbol=par.replace('/',''),
+        exchange="binance",
+        screener="crypto",
+        interval=intervalo,
+        timeout=None
+        )
+        return handler.get_analysis().indicators["RSI"]
+    except Exception as e:
+        print(f"Error al calcular el RSI: {e}")
+        return None
+
+def verificar_RSI(binance, par, intervalo, relacion, valor):
+    RSI = calcular_rsi(binance, par, intervalo, periodo=14)
+    if relacion == comparacion.MENOR:
+        return RSI < valor
+    else:
+        return RSI > valor
 
 def registrar_log(mensaje):
     with open(ARCHIVO_LOG, 'a') as f:
@@ -176,7 +233,7 @@ try:
     for mensaje in mensajes:
         #reemplazo un "." por ","
         mensaje = mensaje.replace(".", ",")
-        if mensaje.startswith('+') or mensaje.startswith('c') or mensaje.startswith('s'):
+        if mensaje.startswith('+') or mensaje.startswith('c') or mensaje.startswith('s') or mensaje.startswith('R'):
             # Verificar si el mensaje es una regla que se puede evaluar en Binance
             if validar_en_binance(binance,mensaje):
                 # Agregar la regla al archivo de reglas y registrar en el log
