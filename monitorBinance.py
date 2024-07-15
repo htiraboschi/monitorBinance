@@ -250,7 +250,7 @@ try:
     # Evaluar cada regla en Binance
     with open('reglas.txt', 'r') as f:
         reglas = f.readlines()
-    with open('reglas.txt', 'w') as f:
+    with open('reglas-tmp.txt', 'w') as f:
         for regla in reglas:
             resultado_regla = evaluar_en_binance(binance,regla)
             if resultado_regla:
@@ -261,6 +261,9 @@ try:
                 f.write(regla)
             registrar_log(f'regla verificada {regla}, resultado {resultado_regla}')
             time.sleep(PAUSA_BINANCE / 1000)
+        f.close()
+        os.remove('reglas.txt')
+        os.rename(f.name,'reglas.txt')
 
     # Mover entradas del log del mes pasado
     mover_entradas_log()
