@@ -250,17 +250,22 @@ try:
     # Evaluar cada regla en Binance
     with open('reglas.txt', 'r') as f:
         reglas = f.readlines()
+        f.close()
+
+    for regla in reglas:
+        resultado_regla = evaluar_en_binance(binance,regla)
+        if resultado_regla:
+            # Si la regla se cumple, notificar en el bot de Telegram y eliminarla del listado de reglas
+            TelegramBot.MiBotTelegram().notificar_en_bot_telegram(f'Regla verificada: {regla}')
+            reglas.remove(regla)
+           
+        registrar_log(f'regla verificada {regla}, resultado {resultado_regla}')
+
+        time.sleep(PAUSA_BINANCE / 1000)
+
     with open('reglas-tmp.txt', 'w') as f:
         for regla in reglas:
-            resultado_regla = evaluar_en_binance(binance,regla)
-            if resultado_regla:
-                # Si la regla se cumple, notificar en el bot de Telegram
-                TelegramBot.MiBotTelegram().notificar_en_bot_telegram(f'Regla verificada: {regla}')
-            else:
-                # Si la regla no se cumple, mantener la regla en el archivo
-                f.write(regla)
-            registrar_log(f'regla verificada {regla}, resultado {resultado_regla}')
-            time.sleep(PAUSA_BINANCE / 1000)
+            f.write(regla)
         f.close()
         os.remove('reglas.txt')
         os.rename(f.name,'reglas.txt')
