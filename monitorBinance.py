@@ -82,6 +82,28 @@ def parsear_regla_subida(regla):
         
     return par, intervalo, valor, reglaOk
     
+def parsear_regla_linea(regla):
+    # Definir el patrón de la regla con una expresión regular
+    patron = r"linea (sobre|bajo) (\S+)/(\S+) \d{2}/\d{2}/\d{4} (\d+(?:[.,]\d+)?) \d{2}/\d{2}/\d{4} (\d+(?:[.,]\d+)?)" #ejemplo linea bajo BTC/USDT 01/01/2023 123.45 02/02/2024 678.90
+    
+    # Intentar hacer coincidir el patrón con la cadena
+    coincidencia = re.match(patron, regla)
+
+    if coincidencia:
+        # Si hay una coincidencia, extraer los grupos
+        bajoOsobre = coincidencia.group(1)
+        par = coincidencia.group(2)+"/"+coincidencia.group(3)
+        fechaA = re.findall(r"\d{2}/\d{2}/\d{4}",regla)[0]
+        valorA = coincidencia.group(4)
+        fechaB = re.findall(r"\d{2}/\d{2}/\d{4}",regla)[1]
+        valorB = coincidencia.group(5)        
+        reglaOk = True
+    else:
+        # Si no hay una coincidencia, establecer las variables en None
+        bajoOsobre, par, fechaA, valorA, fechaB, valorB, reglaOk = None,None, None, None,None,False
+
+    return bajoOsobre, par, fechaA, valorA, fechaB, valorB, reglaOk
+
 def parsear_regla_RSI(regla):
     # Definir el patrón de la regla con una expresión regular
     patron = r'(?i)(RSI)\s+(\S+)/(\S+)\s+(\S+)\s*([<>])\s*(\d+(?:[.,]\d+)?)' #ejemplo: RSI LTC/USDT 15m <41
@@ -145,6 +167,13 @@ def evaluar_regla(binance,regla):
                 return False, False
             else:
                 return True, verificar_RSI(par, intervalo, relacion, valor)
+        elif regla.startswith('l'):
+            #cruce de linea
+            bajoOsobre, par, fechaA, valorA, fechaB, valorB, reglaOk = parsear_regla_linea(regla)
+            if not reglaOk:
+                return False, False
+            else:
+                return True, verificar_linea(binance, bajoOsobre, par, fechaA, valorA, fechaB, valorB)
             
     except:
         return False, False
@@ -194,6 +223,31 @@ def verificar_RSI(par, intervalo, relacion, valor):
     else:
         return RSI > valor
 
+def convertir_fecha_a_numero(fecha):
+    #Convierte una fecha en formato dd/mm/yyyy a un número de días desde una fecha inicial.
+    fecha_inicial = datetime.strptime("01/01/1970", "%d/%m/%Y")
+    fecha_obj = datetime.strptime(fecha, "%d/%m/%Y")
+    return (fecha_obj - fecha_inicial).days
+
+def verificar_linea(binance,bajoOsobre, par, fechaA, valorA, fechaB, valorB):
+    precio_actual = binance.fetch_ticker(par.upper())['last']
+    fechaAnumero = convertir_fecha_a_numero(fechaA)
+    fechaBnumero = convertir_fecha_a_numero(fechaB)
+    fechahoynumero = convertir_fecha_a_numero(datetime.now().strftime("%d/%m/%Y"))
+
+    # Calcular la pendiente y la ordenada en el origen
+    pendiente = (float(valorB.replace(",", ".")) - float(valorA.replace(",", "."))) / (fechaBnumero - fechaAnumero)
+    ordenada_origen = float(valorA.replace(",", ".")) - pendiente * fechaAnumero
+
+    # Calcular el valor de y en la recta para la fecha del punto
+    y_en_recta = pendiente * fechahoynumero + ordenada_origen
+
+    if (bajoOsobre == "bajo"):
+        return precio_actual < y_en_recta
+    else:
+        return precio_actual > y_en_recta
+    
+
 def registrar_log(mensaje):
     with open(ARCHIVO_LOG, 'a') as f:
         f.write(f'{datetime.now()} {mensaje}\n')
@@ -233,7 +287,7 @@ try:
     for mensaje in mensajes:
         #reemplazo un "." por ","
         mensaje = mensaje.replace(".", ",")
-        if mensaje.startswith('+') or mensaje.startswith('c') or mensaje.startswith('s') or mensaje.startswith('R'):
+        if mensaje.startswith('+') or mensaje.startswith('c') or mensaje.startswith('s') or mensaje.startswith('R') or mensaje.startswith('l'):
             # Verificar si el mensaje es una regla que se puede evaluar en Binance
             if validar_en_binance(binance,mensaje):
                 # Agregar la regla al archivo de reglas y registrar en el log
