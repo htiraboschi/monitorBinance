@@ -13,7 +13,8 @@ import re
 import os
 import platform
 from enum import Enum #para enumerados mayor, menor, igual
-from tradingview_ta import TA_Handler, Interval, Exchange
+from tradingview_ta import TA_Handler
+import pandas as pd
 
 PAUSA_BINANCE = 500 #pausa entre consultas a Binances. Unidad: milisegundos
 ARCHIVO_LOG = "log.txt"
@@ -125,6 +126,26 @@ def parsear_regla_RSI(regla):
         
     return par, intervalo, relacion, valor, reglaOk
 
+def parsear_regla_EMA(regla):
+    # Definir el patrón de la regla con una expresión regular
+    patron = r'(?i)(EMA)\s+(\d+)+\s+(\S+)\s+(\S+)/(\S+)\s+(\+\d+(?:[.,]\d+)?)' #ejemplo: EMA 20 1h BTC/USDT +200
+
+    # Intentar hacer coincidir el patrón con la cadena
+    coincidencia = re.match(patron, regla)
+
+    if coincidencia:
+        # Si hay una coincidencia, extraer los grupos
+        intervalo = int(coincidencia.group(2))
+        periodo = coincidencia.group(3)
+        par = coincidencia.group(4)+"/"+coincidencia.group(5)
+        margen = float((coincidencia.group(6)[1:]).replace(',', '.'))
+        reglaOk = True
+    else:
+        # Si no hay una coincidencia, establecer las variables en None
+        intervalo, periodo, par, margen, reglaOk = None, None, None, None, False
+    
+    return intervalo, periodo, par, margen, reglaOk
+
 def evaluar_regla(binance,regla):
     try:
         if regla.startswith('+'):
@@ -174,6 +195,14 @@ def evaluar_regla(binance,regla):
                 return False, False
             else:
                 return True, verificar_linea(binance, bajoOsobre, par, fechaA, valorA, fechaB, valorB)
+        elif regla.startswith('E'):
+            #EMA
+            # Descomponer la regla
+            intervalo, periodo, par, margen, reglaOk = parsear_regla_EMA(regla)
+            if not reglaOk:
+                return False, False
+            else:
+                return True, verificar_EMA(binance, par, intervalo, periodo, margen)
             
     except:
         return False, False
@@ -215,6 +244,29 @@ def calcular_rsi(par, intervalo='1h', periodo=14):
     except Exception as e:
         print(f"Error al calcular el RSI: {e}")
         return None
+    
+def calcular_EMA(binance, par, intervalo, periodo): 
+    def calcular_EMA_Binance(cierres, longitud, suavizado):
+        if suavizado==0:
+            EMA = sum(cierres[-longitud:])/longitud
+        else:
+            multiplicador = 2 / (longitud+1)
+            EMA_anterior = calcular_EMA_Binance(cierres[:-1],longitud, suavizado-1)
+            EMA = (cierres[-1] - EMA_anterior)*multiplicador + EMA_anterior
+        return EMA
+    
+    def obtener_datos_binance(binance, par, intervalo, periodo):
+        try:
+            velas = binance.fetch_ohlcv(par.upper().replace('/',''), timeframe=periodo, limit=intervalo)
+            datos = pd.DataFrame(velas, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
+            return datos
+        except Exception as e:
+            print("Error en obtener_datos_binance:")
+            print(str(e))
+        
+    datos = obtener_datos_binance(binance, par, intervalo+12, periodo)
+    ema = calcular_EMA_Binance(list(datos["close"]),intervalo,12)
+    return ema
 
 def verificar_RSI(par, intervalo, relacion, valor):
     RSI = calcular_rsi(par, intervalo, periodo=14)
@@ -246,7 +298,14 @@ def verificar_linea(binance,bajoOsobre, par, fechaA, valorA, fechaB, valorB):
         return precio_actual < y_en_recta
     else:
         return precio_actual > y_en_recta
-    
+
+def verificar_EMA(binance, par, intervalo, periodo, margen):
+    EMA = calcular_EMA(binance, par, intervalo, periodo)
+    if EMA:
+        valorPar = binance.fetch_ticker(par.upper())['last']
+        return valorPar < EMA + margen
+    else:
+        return None
 
 def registrar_log(mensaje):
     with open(ARCHIVO_LOG, 'a') as f:
@@ -287,7 +346,7 @@ try:
     for mensaje in mensajes:
         #reemplazo un "." por ","
         mensaje = mensaje.replace(".", ",")
-        if mensaje.startswith('+') or mensaje.startswith('c') or mensaje.startswith('s') or mensaje.startswith('R') or mensaje.startswith('l'):
+        if mensaje.startswith('+') or mensaje.startswith('c') or mensaje.startswith('s') or mensaje.startswith('R') or mensaje.startswith('l') or mensaje.startswith('E'):
             # Verificar si el mensaje es una regla que se puede evaluar en Binance
             if validar_en_binance(binance,mensaje):
                 # Agregar la regla al archivo de reglas y registrar en el log
