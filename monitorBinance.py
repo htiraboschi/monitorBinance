@@ -352,6 +352,7 @@ try:
                 # Agregar la regla al archivo de reglas y registrar en el log
                 with open('reglas.txt', 'a') as f:
                     f.write(f'{mensaje}\n')
+                    f.close()
                     registrar_log(f'nueva regla {mensaje}')
             else: TelegramBot.MiBotTelegram().notificar_en_bot_telegram(f'Regla {mensaje} no valida. No se incorpora a reglas actuales')
         elif mensaje.startswith('?'):
