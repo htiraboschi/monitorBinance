@@ -15,10 +15,12 @@ import platform
 from enum import Enum #para enumerados mayor, menor, igual
 from tradingview_ta import TA_Handler
 import pandas as pd
+import pickle
 
 PAUSA_BINANCE = 500 #pausa entre consultas a Binances. Unidad: milisegundos
 ARCHIVO_LOG = "log.txt"
 LOG_MAXIMO = 1024 #tamaño máximo del archivo de log (en kilobytes) antes de ser cortado
+ARCHIVO_ORDENES_ABIERTAS = "ordenes.pkl"
 
 class comparacion(Enum):
     MAYOR = 1
@@ -329,7 +331,7 @@ def mover_entradas_log():
 
 # Cambiamos el directorio de trabajo
 if platform.system() == 'Windows':
-    os.chdir('C:/Hernan/Nextcloud/sda1/programas/raspberry/monitor Binance')
+    os.chdir('C:/Users/herna/Nextcloud/sda1/programas/raspberry/monitor Binance')
 elif platform.uname()[4].startswith('arm'):
     os.chdir('/home/root/monitorBinance')
 
@@ -337,9 +339,15 @@ elif platform.uname()[4].startswith('arm'):
 registrar_log('inicio de ejecución')
 
 try:
-    
     # Crear instancia de Binance
-    binance = ccxt.binance()
+    api_key = 'FM8tZT8GNvB57NofvaxhIxjs5YJzTKvj1xtZ228wVh1v9FxQPIvaS54tnx5C0sPv'
+    api_secret = 'f3mHIj8yVKQsI8Rrr53pqBl6gqWNedeWnq4C2SjGHjJ2vAkJSnZyIKmE3ZjnkTAU'
+
+    binance = getattr(ccxt, 'binance')({
+        'apiKey': api_key,
+        'secret': api_secret,
+    })
+    binance.options['warnOnFetchOpenOrdersWithoutSymbol'] = False #esto hace que pueda traer todas las ordenes abiertas sin que me de error la consulta
         
     # Consultar bot de Telegram
     mensajes = TelegramBot.MiBotTelegram().consultar_bot_telegram()
@@ -384,6 +392,26 @@ try:
         os.remove('reglas.txt')
         os.rename(f.name,'reglas.txt')
 
+    #chequeo que no haya ordenes que se ejecutaron desde la última ejecución
+    #recupero de Binance todas las órdenes existentes
+    currentOrders = binance.fetch_open_orders()
+    #recupero de archivo local todas las órdenes existentes en la corrida anterior
+    with open(ARCHIVO_ORDENES_ABIERTAS,'rb') as archivoOrdenes:
+        ordenesAnteriorCorrida = pickle.load(archivoOrdenes)
+    archivoOrdenes.close()
+    #veo si alguna orden fue ejecutada entre corridas
+    for orden in ordenesAnteriorCorrida:
+        orderId, symbol = orden
+        if not [order for order in currentOrders if order['info']['orderId'] == orderId]:
+            TelegramBot.MiBotTelegram().notificar_en_bot_telegram(f'Orden ejecutada: {orden}')
+    #guardo todas las órdenes recuperadas de Binance para la corrida siguiente
+    listaOrdenesActualizada = []
+    for orden in currentOrders:
+        listaOrdenesActualizada.append((orden["info"]["orderId"],orden["info"]["symbol"]))
+    with open(ARCHIVO_ORDENES_ABIERTAS,'wb') as archivoOrdenes:
+        pickle.dump(listaOrdenesActualizada,archivoOrdenes)
+    archivoOrdenes.close()
+              
     # Mover entradas del log del mes pasado
     mover_entradas_log()
 
