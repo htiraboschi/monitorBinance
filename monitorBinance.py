@@ -6,7 +6,8 @@ Created on Wed Oct 18 23:26:13 2023
 """
 
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
+from datetime import time as datetime_time
 import TelegramBot
 import ccxt
 import re
@@ -21,6 +22,8 @@ PAUSA_BINANCE = 500 #pausa entre consultas a Binances. Unidad: milisegundos
 ARCHIVO_LOG = "log.txt"
 LOG_MAXIMO = 1024 #tamaño máximo del archivo de log (en kilobytes) antes de ser cortado
 ARCHIVO_ORDENES_ABIERTAS = "ordenes.pkl"
+ARCHIVO_FECHA_REPORTE_MATUTINO = "fecha_reporte.pkl"
+HORA_REPORTE = datetime_time(6,0)
 
 class comparacion(Enum):
     MAYOR = 1
@@ -410,10 +413,26 @@ try:
         listaOrdenesActualizada.append((orden["info"]["orderId"],orden["info"]["symbol"]))
     with open(ARCHIVO_ORDENES_ABIERTAS,'wb') as archivoOrdenes:
         pickle.dump(listaOrdenesActualizada,archivoOrdenes)
-    archivoOrdenes.close()
+        archivoOrdenes.close()
               
     # Mover entradas del log del mes pasado
     mover_entradas_log()
+
+    #si llegué al final y todavía no notifique hoy que estoy operativo, lo hago.
+    try:
+        #busco la fecha de la última notificación
+        with open(ARCHIVO_FECHA_REPORTE_MATUTINO,'rb') as archivoFechaReporte:
+            fecha_reporte_anterior = pickle.load(archivoFechaReporte)
+    except:
+        #si llegué acá es por que no hay registro de reporte matutino. Pongo como el anterior reporte fue ayer
+        fecha_reporte_anterior = datetime.now().date() - timedelta(days=1)
+    #acá ya puedo comparar la fecha actual con fecha_reporte_anterior y ver si ya es hora de generar el nuevo reporte en Telegram
+    if fecha_reporte_anterior < datetime.now().date() and datetime.now().time() >= HORA_REPORTE:
+        reporte = f"Estado actual es operativo. \nCantidad de reglas: {len(reglas)}. \nCantidad de ordenes activas: {len(listaOrdenesActualizada)}."
+        TelegramBot.MiBotTelegram().notificar_en_bot_telegram(reporte)
+        with open(ARCHIVO_FECHA_REPORTE_MATUTINO,'wb') as archivoFechaReporte:
+            pickle.dump(datetime.now().date(),archivoFechaReporte)
+            archivoFechaReporte.close()
 
 except Exception as e:
     # Si ocurre un error, notificar en el bot de Telegram y registrar en el log
