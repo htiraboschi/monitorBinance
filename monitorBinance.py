@@ -17,6 +17,7 @@ from enum import Enum #para enumerados mayor, menor, igual
 from tradingview_ta import TA_Handler
 import pandas as pd
 import pickle
+from pathlib import Path
 
 PAUSA_BINANCE = 500 #pausa entre consultas a Binances. Unidad: milisegundos
 ARCHIVO_LOG = "log.txt"
@@ -24,6 +25,7 @@ LOG_MAXIMO = 1024 #tamaño máximo del archivo de log (en kilobytes) antes de se
 ARCHIVO_ORDENES_ABIERTAS = "ordenes.pkl"
 ARCHIVO_FECHA_REPORTE_MATUTINO = "fecha_reporte.pkl"
 HORA_REPORTE = datetime_time(6,0)
+FLAG_ALARMA_CERO_REGLAS = "flagCeroAlarmas.txt"
 
 class comparacion(Enum):
     MAYOR = 1
@@ -335,8 +337,8 @@ def mover_entradas_log():
 # Cambiamos el directorio de trabajo
 if platform.system() == 'Windows':
     os.chdir('C:/Users/herna/Nextcloud/sda1/programas/raspberry/monitor Binance')
-elif platform.uname()[4].startswith('arm'):
-    os.chdir('/home/root/monitorBinance')
+else:
+    os.chdir('/home/dietpi/monitorBinance')
 
 # Inicio de ejecución
 registrar_log('inicio de ejecución')
@@ -415,6 +417,17 @@ try:
         pickle.dump(listaOrdenesActualizada,archivoOrdenes)
         archivoOrdenes.close()
               
+    #alarma si no hay reglas
+    #si la cantidad de alarmas es menor o igual a 1, seteo alarma (el menor a 1 es por si estuviera contando una linea en blanco al final del archivo)
+    if len(reglas) <= 1:
+        alarmaCeroReglas = True
+        #solo disparo alarma si no había notificado antes
+        if not os.path.exists(FLAG_ALARMA_CERO_REGLAS):
+            TelegramBot.MiBotTelegram().notificar_en_bot_telegram('No hay alarmas definidas')
+            #seteo el flag para no volver a notificar (se debe borrar por fuera del programa cuando se hayan restablecido las reglas)
+            Path(FLAG_ALARMA_CERO_REGLAS).touch()
+    else:
+        alarmaCeroReglas = False
     # Mover entradas del log del mes pasado
     mover_entradas_log()
 
@@ -429,6 +442,8 @@ try:
     #acá ya puedo comparar la fecha actual con fecha_reporte_anterior y ver si ya es hora de generar el nuevo reporte en Telegram
     if fecha_reporte_anterior < datetime.now().date() and datetime.now().time() >= HORA_REPORTE:
         reporte = f"Estado actual es operativo. \nCantidad de reglas: {len(reglas)}. \nCantidad de ordenes activas: {len(listaOrdenesActualizada)}."
+        if alarmaCeroReglas:
+            reporte = reporte + " \nALARMA: cero reglas!"
         TelegramBot.MiBotTelegram().notificar_en_bot_telegram(reporte)
         with open(ARCHIVO_FECHA_REPORTE_MATUTINO,'wb') as archivoFechaReporte:
             pickle.dump(datetime.now().date(),archivoFechaReporte)
