@@ -1,0 +1,6 @@
+{
+    "binance_conection": {
+        "API_KEY": "APIKEY",
+        "API_SECRET": "APISECRET"
+    }
+}
