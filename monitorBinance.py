@@ -355,6 +355,7 @@ try:
             config_data = json.load(file)        
             api_key = config_data["binance_conection"]["API_KEY"]
             api_secret = config_data["binance_conection"]["API_SECRET"]
+            telegram_token = config_data["telegram_chat"]["TELEGRAM_TOKEN"]
     except FileNotFoundError:
         registrar_log(f"Error: El archivo {config_file} no existe.")
         sys.exit(1)
@@ -373,7 +374,7 @@ try:
     binance.options['warnOnFetchOpenOrdersWithoutSymbol'] = False #esto hace que pueda traer todas las ordenes abiertas sin que me de error la consulta
         
     # Consultar bot de Telegram
-    mensajes = TelegramBot.MiBotTelegram(ARCHIVO_LOG).consultar_bot_telegram()
+    mensajes = TelegramBot.MiBotTelegram(telegram_token,ARCHIVO_LOG).consultar_bot_telegram()
     for mensaje in mensajes:
         #reemplazo un "." por ","
         mensaje = mensaje.replace(".", ",")
@@ -381,7 +382,7 @@ try:
             #si la regla es "command reboot", reinicio la raspberry
             if mensaje == "command reboot":
                 registrar_log("Se enviará comando 'sudo reboot'")
-                TelegramBot.MiBotTelegram(ARCHIVO_LOG).notificar_en_bot_telegram("Se enviará comando 'sudo reboot'")
+                TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram("Se enviará comando 'sudo reboot'")
                 os.system('sudo reboot') 
                 sys.exit()
             # Verificar si el mensaje es una regla que se puede evaluar en Binance
@@ -391,12 +392,12 @@ try:
                     f.write(f'{mensaje}\n')
                     f.close()
                     registrar_log(f'nueva regla {mensaje}')
-                    TelegramBot.MiBotTelegram(ARCHIVO_LOG).notificar_en_bot_telegram(f'nueva regla {mensaje}')
-            else: TelegramBot.MiBotTelegram(ARCHIVO_LOG).notificar_en_bot_telegram(f'Regla {mensaje} no valida. No se incorpora a reglas actuales')
+                    TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram(f'nueva regla {mensaje}')
+            else: TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram(f'Regla {mensaje} no valida. No se incorpora a reglas actuales')
         elif mensaje.startswith('?'):
             with open('reglas.txt', 'r') as f:
                 reglas = f.read();
-                TelegramBot.MiBotTelegram(ARCHIVO_LOG).notificar_en_bot_telegram(f'Reglas actuales:\n{reglas}')
+                TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram(f'Reglas actuales:\n{reglas}')
                 
 
     # Evaluar cada regla en Binance
@@ -408,7 +409,7 @@ try:
         resultado_regla = evaluar_en_binance(binance,regla)
         if resultado_regla:
             # Si la regla se cumple, notificar en el bot de Telegram y eliminarla del listado de reglas
-            TelegramBot.MiBotTelegram(ARCHIVO_LOG).notificar_en_bot_telegram(f'Regla verificada: {regla}')
+            TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram(f'Regla verificada: {regla}')
             reglas.remove(regla)
            
         registrar_log(f'regla verificada {regla}, resultado {resultado_regla}')
@@ -433,7 +434,7 @@ try:
     for orden in ordenesAnteriorCorrida:
         orderId, symbol = orden
         if not [order for order in currentOrders if order['info']['orderId'] == orderId]:
-            TelegramBot.MiBotTelegram(ARCHIVO_LOG).notificar_en_bot_telegram(f'Orden ejecutada: {orden}')
+            TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram(f'Orden ejecutada: {orden}')
     #guardo todas las órdenes recuperadas de Binance para la corrida siguiente
     listaOrdenesActualizada = []
     for orden in currentOrders:
@@ -448,7 +449,7 @@ try:
         alarmaCeroReglas = True
         #solo disparo alarma si no había notificado antes
         if not os.path.exists(FLAG_ALARMA_CERO_REGLAS):
-            TelegramBot.MiBotTelegram(ARCHIVO_LOG).notificar_en_bot_telegram('No hay alarmas definidas. Recordar borrar el flag para reactivar esta alarma.')
+            TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram('No hay alarmas definidas. Recordar borrar el flag para reactivar esta alarma.')
             #seteo el flag para no volver a notificar (se debe borrar por fuera del programa cuando se hayan restablecido las reglas)
             Path(FLAG_ALARMA_CERO_REGLAS).touch()
     else:
@@ -469,7 +470,7 @@ try:
         reporte = f"Estado actual es operativo. \nCantidad de reglas: {len(reglas)}. \nCantidad de ordenes activas: {len(listaOrdenesActualizada)}."
         if alarmaCeroReglas:
             reporte = reporte + " \nALARMA: cero reglas!"
-        TelegramBot.MiBotTelegram(ARCHIVO_LOG).notificar_en_bot_telegram(reporte)
+        TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram(reporte)
         with open(ARCHIVO_FECHA_REPORTE_MATUTINO,'wb') as archivoFechaReporte:
             pickle.dump(datetime.now().date(),archivoFechaReporte)
             archivoFechaReporte.close()
@@ -477,8 +478,8 @@ try:
 except Exception as e:
     # Si ocurre un error, notificar en el bot de Telegram y registrar en el log
     error_trace = traceback.format_exc()
-    TelegramBot.MiBotTelegram(ARCHIVO_LOG).notificar_en_bot_telegram(f'Error: {str(e)}')
-    TelegramBot.MiBotTelegram(ARCHIVO_LOG).notificar_en_bot_telegram(f'Traza de llamados: {error_trace}')
+    TelegramBot.MiBotTelegram(telegram_token,ARCHIVO_LOG).notificar_en_bot_telegram(f'Error: {str(e)}')
+    TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram(f'Traza de llamados: {error_trace}')
     registrar_log(f'Error: {str(e)}')
 
 # Fin de ejecución

@@ -2,5 +2,8 @@
     "binance_conection": {
         "API_KEY": "APIKEY",
         "API_SECRET": "APISECRET"
-    }
+    },
+    "telegram_chat": {
+        "TELEGRAM_TOKEN": "TELEGRAM_TOKEN"
+    } 
 }
