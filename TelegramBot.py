@@ -7,8 +7,8 @@ import time
 ARCHIVO_LOG = "log.txt"
 
 class MiBotTelegram:
-    def __init__(self, archivo_log):
-        self.token = "6836398672:AAFZmkrgsZlRvLf79F32UiFENMKSrNChv2M"
+    def __init__(self, telegram_token, archivo_log):
+        self.token = telegram_token
         self.url_base = f"https://api.telegram.org/bot{self.token}/"
         self._archivo_log = archivo_log
         if os.path.exists('ultimo_id.txt'):
