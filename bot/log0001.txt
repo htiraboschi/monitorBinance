@@ -1,0 +1,156 @@
+2023-10-19 14:39:33.623432 inicio de ejecución
+2023-10-19 14:40:20.936494 Error: 'NoneType' object is not iterable
+2023-10-19 14:43:01.761755 inicio de ejecución
+2023-10-19 14:43:49.872506 inicio de ejecución
+2023-10-19 14:43:49.876698 fin ejecución
+2023-10-19 14:43:55.558390 inicio de ejecución
+2023-10-19 14:44:28.098409 inicio de ejecución
+2023-10-19 14:44:28.102587 fin ejecución
+2023-10-19 14:44:35.949732 inicio de ejecución
+2023-10-19 14:44:47.590795 Error: 
+2023-10-19 14:44:47.593776 fin ejecución
+2023-10-19 16:22:00.996493 inicio de ejecución
+2023-10-19 16:22:40.395066 inicio de ejecución
+2023-10-19 16:23:31.165175 Error: 
+2023-10-19 16:23:31.169558 fin ejecución
+2023-10-19 16:23:35.574516 inicio de ejecución
+2023-10-19 16:24:56.334256 Error: 
+2023-10-19 16:24:56.337272 fin ejecución
+2023-10-19 16:25:17.227799 inicio de ejecución
+2023-10-19 16:28:26.058638 Error: 
+2023-10-19 16:28:26.062649 fin ejecución
+2023-10-19 16:28:30.361198 inicio de ejecución
+2023-10-19 16:31:18.037235 Error: 
+2023-10-19 16:31:18.040933 fin ejecución
+2023-10-19 16:31:19.685477 inicio de ejecución
+2023-10-19 16:33:37.581425 inicio de ejecución
+2023-10-19 16:34:49.456686 Error: 
+2023-10-19 16:34:49.461323 fin ejecución
+2023-10-19 16:34:52.265917 inicio de ejecución
+2023-10-19 16:36:33.978888 inicio de ejecución
+2023-10-19 16:43:43.185194 inicio de ejecución
+2023-10-19 16:54:48.525826 inicio de ejecución
+2023-10-19 16:56:05.058001 Error: 
+2023-10-19 16:56:05.061760 fin ejecución
+2023-10-19 16:56:06.810521 inicio de ejecución
+2023-10-19 16:57:41.153469 inicio de ejecución
+2023-10-19 16:57:57.492406 Error: 'TelegramBot' object has no attribute 'consultar_bot_telegram'
+2023-10-19 16:57:57.495624 fin ejecución
+2023-10-19 16:58:07.571652 inicio de ejecución
+2023-10-19 16:58:49.454454 Error: 
+2023-10-19 16:58:49.459032 fin ejecución
+2023-10-19 16:58:51.586427 inicio de ejecución
+2023-10-19 16:59:19.801622 inicio de ejecución
+2023-10-19 17:00:16.891809 Error: 
+2023-10-19 17:00:16.895100 fin ejecución
+2023-10-20 19:26:13.632585 inicio de ejecución
+2023-10-20 19:28:28.103715 fin ejecución
+2023-10-20 19:28:33.678893 inicio de ejecución
+2023-10-20 19:29:05.018011 Error: 
+2023-10-20 19:29:05.022008 fin ejecución
+2023-10-20 19:29:07.935178 inicio de ejecución
+2023-10-20 19:32:34.474199 Error: 
+2023-10-20 19:32:34.476957 fin ejecución
+2023-10-20 19:32:46.575406 inicio de ejecución
+2023-10-20 19:37:46.604525 Error: 
+2023-10-20 19:37:46.610220 fin ejecución
+2023-10-20 19:37:53.892176 inicio de ejecución
+2023-10-20 19:43:25.120830 inicio de ejecución
+2023-10-20 19:46:30.432685 inicio de ejecución
+2023-10-20 19:48:13.728446 fin ejecución
+2023-10-20 19:48:18.354118 inicio de ejecución
+2023-10-20 19:48:33.694690 inicio de ejecución
+2023-10-20 19:48:39.618693 inicio de ejecución
+2023-10-20 19:50:55.703876 inicio de ejecución
+2023-10-20 19:53:49.825713 inicio de ejecución
+2023-10-20 19:54:55.350474 fin ejecución
+2023-10-20 19:55:10.011807 inicio de ejecución
+2023-10-20 19:56:32.087566 fin ejecución
+2023-12-11 22:01:04.156811 inicio de ejecución
+2023-12-11 22:02:06.742320 fin ejecución
+2023-12-12 09:53:10.103630 inicio de ejecución
+2023-12-12 09:53:11.307336 fin ejecución
+2023-12-12 10:29:38.386539 inicio de ejecución
+2023-12-12 10:29:40.430237 fin ejecución
+2023-12-12 10:30:56.499862 inicio de ejecución
+2023-12-12 10:31:01.821623 fin ejecución
+2023-12-12 10:32:48.418518 inicio de ejecución
+2023-12-12 10:32:49.433505 fin ejecución
+2023-12-12 10:33:25.351520 inicio de ejecución
+2023-12-12 10:33:30.794630 fin ejecución
+2023-12-12 10:35:08.486727 inicio de ejecución
+2023-12-12 10:35:09.668058 fin ejecución
+2023-12-12 10:35:24.857993 inicio de ejecución
+2023-12-12 10:35:25.851878 fin ejecución
+2023-12-12 11:13:44.586172 inicio de ejecución
+2023-12-12 11:13:45.720333 fin ejecución
+2023-12-12 11:15:00.244588 inicio de ejecución
+2023-12-12 11:15:05.697416 fin ejecución
+2023-12-12 11:15:35.656834 inicio de ejecución
+2023-12-12 11:15:41.352366 fin ejecución
+2023-12-12 11:17:12.220767 inicio de ejecución
+2023-12-12 11:17:13.206298 fin ejecución
+2023-12-12 11:17:36.405651 inicio de ejecución
+2023-12-12 11:17:49.378946 fin ejecución
+2023-12-12 11:34:15.963633 inicio de ejecución
+2023-12-12 11:34:17.010978 fin ejecución
+2023-12-12 11:35:28.773420 inicio de ejecución
+2023-12-12 11:35:29.748897 fin ejecución
+2023-12-12 11:35:41.267630 inicio de ejecución
+2023-12-12 11:35:42.269405 fin ejecución
+2023-12-12 11:37:07.736653 inicio de ejecución
+2023-12-12 11:37:08.738218 fin ejecución
+2023-12-12 11:38:40.032888 inicio de ejecución
+2023-12-12 11:38:45.515857 fin ejecución
+2023-12-12 11:42:07.177331 inicio de ejecución
+2023-12-12 11:42:13.225312 nueva regla +btc<46000
+2023-12-12 11:42:14.237947 fin ejecución
+2023-12-12 12:13:01.148209 inicio de ejecución
+2023-12-12 12:13:07.288446 fin ejecución
+2023-12-12 12:14:59.808396 inicio de ejecución
+2023-12-12 12:15:00.859180 fin ejecución
+2023-12-12 12:15:27.692003 inicio de ejecución
+2023-12-12 12:15:28.702752 fin ejecución
+2023-12-12 12:21:40.561680 inicio de ejecución
+2023-12-12 12:21:41.606887 fin ejecución
+2023-12-12 12:52:49.195332 inicio de ejecución
+2023-12-12 12:52:50.198677 fin ejecución
+2023-12-12 12:54:18.866591 inicio de ejecución
+2023-12-12 12:54:19.850635 fin ejecución
+2023-12-12 12:56:23.605285 inicio de ejecución
+2023-12-12 12:56:24.609100 fin ejecución
+2023-12-12 12:57:24.592632 inicio de ejecución
+2023-12-12 12:57:25.573792 fin ejecución
+2023-12-12 12:58:14.424694 inicio de ejecución
+2023-12-12 12:58:15.448053 fin ejecución
+2023-12-12 12:58:46.179301 inicio de ejecución
+2023-12-12 12:58:51.856875 nueva regla +BTC/USDT<46000
+2023-12-12 12:58:52.871884 fin ejecución
+2023-12-12 12:59:41.298686 inicio de ejecución
+2023-12-12 12:59:47.971165 nueva regla +BTC/USDT>46000
+2023-12-12 12:59:49.983939 fin ejecución
+2023-12-12 14:13:35.730640 inicio de ejecución
+2023-12-12 14:13:42.465107 nueva regla +BTC/USDT<40000
+2023-12-12 14:13:48.189608 regla verificada +BTC/USDT<46000
+
+2023-12-12 14:14:04.304063 fin ejecución
+2023-12-12 14:15:49.003578 inicio de ejecución
+2023-12-12 14:16:09.805222 fin ejecución
+2023-12-12 14:16:39.463871 inicio de ejecución
+2023-12-12 14:16:46.117800 nueva regla +BTC/USDT<46000
+2023-12-12 14:17:05.676509 regla verificada +BTC/USDT<46000
+
+2023-12-12 14:17:08.014871 fin ejecución
+2023-12-12 14:19:20.580995 inicio de ejecución
+2023-12-12 14:19:27.814573 nueva regla +btc/usdt<46000
+2023-12-12 14:19:46.717785 regla verificada +btc/usdt<46000
+
+2023-12-12 14:19:49.724810 fin ejecución
+2023-12-14 11:29:44.038332 inicio de ejecución
+2023-12-14 11:29:50.486111 nueva regla +DOGE/USDT>0,102
+2023-12-14 11:30:09.913824 Error: name 'archivo' is not defined
+2023-12-14 11:30:09.924026 fin ejecución
+2023-12-14 11:34:12.078070 inicio de ejecución
+2023-12-14 11:34:36.512366 Error: name 'archivo' is not defined
+2023-12-14 11:34:36.566882 fin ejecución
+2023-12-14 11:35:05.251694 inicio de ejecución
