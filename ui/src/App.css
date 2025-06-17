@@ -1,0 +1,132 @@
+#root {
+  min-height: 100vh;       /* Mínimo: altura completa de la pantalla */
+  width: 100%;             /* Ancho completo */
+  display: flex;           /* Opcional: si usas flexbox en tu app */
+  flex-direction: column;  /* Opcional: para layouts en columna */
+}
+
+.App {
+  display: flex;
+  justify-content: center; /* Centra el hijo horizontalmente */
+  flex-direction: column;
+}
+
+.app_reglas {
+  width: 100%;
+  max-width: 800px;       /* Ancho máximo para mejor legibilidad */
+  display: flex;
+  flex-direction: column; /* Cada regla se muestra en una nueva línea */
+  gap: 10px;             /* Espacio entre reglas */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Tamaño de fuente base (3 veces el tamaño normal = ~48px) */
+.regla-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-size: 1rem; /* 3 veces el tamaño normal (1rem = 16px) */
+}
+
+.regla-texto {
+  flex: 1;
+  font-weight: bold;
+}
+
+.regla-fecha {
+  margin: 0 30px; /* Aumenté el margen para compensar el tamaño de fuente */
+  color: #666;
+  font-size: 0.8em; /* Un poco más pequeña que el texto principal */
+}
+
+.boton-borrar {
+  padding: 10px 20px; /* Botón más grande */
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.7em; /* Tamaño relativo al texto de la regla */
+  transition: background-color 0.3s;
+}
+
+.boton-borrar:hover {
+  background-color: #cc0000;
+}
+
+.reglas_title {
+  font-size: 4rem; /* Título aún más grande */
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+
+.nueva_regla {
+  margin: 20px 0;
+}
+
+.nueva_regla_container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nueva_regla_label {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.nueva_regla_input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.boton_validar {
+  padding: 8px 15px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.boton_crear {
+  padding: 8px 15px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.boton_validar:hover {
+  background-color: #3e8e41;
+}
+
+.boton_crear:hover {
+  background-color: #0b7dda;
+}
+
+.mensaje-validacion {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.mensaje-validacion.valido {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.mensaje-validacion.invalido {
+  background-color: #f8d7da;
+  color: #721c24;
+}
