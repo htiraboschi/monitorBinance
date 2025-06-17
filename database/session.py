@@ -5,6 +5,5 @@ async def get_db_session(db_file_path: str):
 
     engine = create_async_engine(SQLALCHEMY_DATABASE_URL)
     SessionLocal = async_sessionmaker(engine, expire_on_commit=False)
-    async with SessionLocal() as session:  # Crea y retorna una sesión
-        yield session
+    return SessionLocal()
     

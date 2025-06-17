@@ -1,4 +1,8 @@
 venv/
+api/__pycache__/
+bot/__pycache__/
+database/__pycache__/
+__pycache__/
 
 # Ignorar archivos de configuración con valores sensibles
 config.json

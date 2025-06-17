@@ -1,5 +1,7 @@
 import json
 from fastapi import FastAPI, HTTPException, Depends, Response, status, Query
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from api.dependencies import get_db
 from database.crud import create_regla, get_reglas, delete_regla, get_regla_by_id
@@ -10,6 +12,21 @@ from bot.monitorBinance import validar_en_binance, create_binance_instance
 config_file = './config.json'
 
 app = FastAPI()
+
+# Configura CORS (¡Colócalo ANTES de definir rutas y mounts!)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",  # Origen de React en desarrollo (Vite)
+        "http://localhost:8000",  # Origen de FastAPI (opcional)
+        "http://192.168.1.51:8000"  # Añade tu IP local
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],  # Permite todos los métodos (GET, POST, etc.)
+    allow_headers=["*"],  # Permite todos los encabezados
+)
+
+
 with open(config_file, 'r') as file:
     config_data = json.load(file)        
     api_key = config_data["binance_conection"]["API_KEY"]
@@ -33,13 +50,13 @@ async def get_reglas_from_db(db = Depends(get_db), response: Response = Response
     try:
         reglas = await get_reglas(db)
         response.status_code = status.HTTP_200_OK
-        return {"cantidad de reglas": len(reglas)}
+        return reglas
     except HTTPException as e:
         response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
         return {"error": str(e)}
 
 #validar una regla
-@app.get("/regla_validation/", status_code=status.HTTP_200_OK, tags= ['reglas'])
+@app.get("/regla_validation", status_code=status.HTTP_200_OK, tags= ['reglas'])
 async def get_regla_validation(texto_regla: str = Query(None,title="Texto de la regla", description="Texto que representa la regla a validar"), response: Response = Response()):
     '''
     Description:
@@ -96,3 +113,7 @@ async def delete_regla_in_db(regla_id: int = Query(None, title="ID de la regla",
     except HTTPException as e:
         response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
         return {"error": str(e)}  
+    
+
+# Monta la carpeta de React como archivos estáticos
+app.mount("/", StaticFiles(directory="ui/dist", html=True), name="react")

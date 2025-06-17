@@ -10,7 +10,7 @@ async def create_regla(db: AsyncSession, regla: Regla):
     return regla
 
 async def get_reglas(db: AsyncSession):
-    result = await db.execute(select(Regla))
+    result = await db.execute(select(Regla).order_by(Regla.fecha_creacion))
     reglas = result.scalars().all()
     return reglas
 

@@ -21,7 +21,7 @@ import traceback
 import sys
 import json
 import asyncio
-import bot
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from bot import TelegramBot
 from database.session import get_db_session
@@ -365,7 +365,7 @@ async def main():
     try:
         # Cambiamos el directorio de trabajo
         if platform.system() == 'Windows':
-            os.chdir('C:/Hernan/Nextcloud/programas/raspberry/monitor Binance')
+            os.chdir('C:/Hernan/Google Drive/PC/programas/raspberry/monitor Binance')
         else:
             os.chdir('/home/dietpi/monitorBinance')
 
@@ -379,6 +379,7 @@ async def main():
                 api_secret = config_data["binance_conection"]["API_SECRET"]
                 telegram_token = config_data["telegram_chat"]["TELEGRAM_TOKEN"]
                 db_file_path = config_data["database"]["DB_FILE_PATH"]
+                registrar_log('lectura de config OK')
         except FileNotFoundError:
             registrar_log(f"Error: El archivo {config_file} no existe.")
             sys.exit(1)
@@ -391,10 +392,17 @@ async def main():
 
         # Crear instancia de Binance
         binance = create_binance_instance(api_key, api_secret)
-        
+        if binance:
+            registrar_log('creacion de instancia de Binance ok')
+        else:
+            registrar_log('creacion de instancia de Binance NO ok')
+
         #creo sesión a la base de datos
-        session_generator = get_db_session(db_file_path)
-        session = await anext(session_generator)
+        session = await get_db_session(db_file_path)
+        if session:
+            registrar_log('creacion de sesión a BD ok')
+        else:
+            registrar_log('creacion de sesión a BD no ok')
         
         # Consultar bot de Telegram
         mensajes = TelegramBot.MiBotTelegram(telegram_token,ARCHIVO_LOG).consultar_bot_telegram()

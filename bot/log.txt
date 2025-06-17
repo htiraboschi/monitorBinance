@@ -7074,3 +7074,127 @@ FROM reglas]
 2025-04-17 07:18:06.859789 regla verificada <Regla(regla_id=23, texto_regla='desde swagger', fecha_creacion='2025-04-16 23:15:20.073986')>, resultado False
 2025-04-17 07:18:08.486137 regla verificada <Regla(regla_id=24, texto_regla='+BTC/USDT>500', fecha_creacion='2025-04-17 10:16:25.489179')>, resultado True
 2025-04-17 07:18:09.321325 fin ejecución
+2025-06-04 15:24:29.228606 inicio de ejecución
+2025-06-04 15:24:33.816609 lectura de config OK
+2025-06-04 15:24:38.099153 creacion de instancia de Binance ok
+2025-06-04 15:24:45.140137 creacion de session_generator a BD ok
+2025-06-04 15:24:51.286730 creacion de sesión a BD ok
+2025-06-04 15:31:36.098264 inicio de ejecución
+2025-06-04 15:31:36.100285 lectura de config OK
+2025-06-04 15:31:36.132308 creacion de instancia de Binance ok
+2025-06-04 15:31:54.481713 Error: object async_generator can't be used in 'await' expression
+2025-06-04 15:31:54.481713 fin ejecución
+2025-06-04 15:32:15.541655 inicio de ejecución
+2025-06-04 15:32:15.543683 lectura de config OK
+2025-06-04 15:32:15.568998 creacion de instancia de Binance ok
+2025-06-04 15:32:20.691664 Error: object async_generator can't be used in 'await' expression
+2025-06-04 15:32:20.692678 fin ejecución
+2025-06-04 15:32:36.904062 inicio de ejecución
+2025-06-04 15:32:36.919752 lectura de config OK
+2025-06-04 15:32:36.941770 creacion de instancia de Binance ok
+2025-06-04 15:32:40.899210 creacion de session_generator a BD ok
+2025-06-04 15:32:40.955805 creacion de sesión a BD ok
+2025-06-04 15:34:26.743054 inicio de ejecución
+2025-06-04 15:34:26.754183 lectura de config OK
+2025-06-04 15:34:26.786501 creacion de instancia de Binance ok
+2025-06-04 15:40:31.965923 inicio de ejecución
+2025-06-04 15:40:31.965923 lectura de config OK
+2025-06-04 15:40:31.982029 creacion de instancia de Binance ok
+2025-06-04 15:40:35.149095 creacion de session_generator a BD ok
+2025-06-04 15:40:35.190140 creacion de sesión a BD ok
+2025-06-04 15:41:03.750201 regla verificada <Regla(regla_id=1, texto_regla='+XVS/USDT<4,8', fecha_creacion='2025-04-04 17:53:39.110604')>, resultado False
+2025-06-04 15:41:04.547084 regla verificada <Regla(regla_id=2, texto_regla='+AVA/USDT<0,42', fecha_creacion='2025-04-04 18:38:08.002312')>, resultado False
+2025-06-04 15:41:05.356710 regla verificada <Regla(regla_id=3, texto_regla='+NEXO/USDT>1,561
++JUP/USDT>1,49', fecha_creacion='2025-04-04 18:48:50.971468')>, resultado False
+2025-06-04 15:41:06.141980 regla verificada <Regla(regla_id=4, texto_regla='+NEXO/USDT>1,561', fecha_creacion='2025-04-04 18:51:07.528335')>, resultado False
+2025-06-04 15:41:06.952325 regla verificada <Regla(regla_id=5, texto_regla='+JUP/USDT>1,49', fecha_creacion='2025-04-04 18:51:07.528335')>, resultado False
+2025-06-04 15:41:07.757019 regla verificada <Regla(regla_id=6, texto_regla='+REZ/USDT>0,07', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 15:41:08.551832 regla verificada <Regla(regla_id=7, texto_regla='+TNSR/USDT>0,88', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 15:41:09.360744 regla verificada <Regla(regla_id=8, texto_regla='+MANTA/USDT>1,4', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 15:41:10.164362 regla verificada <Regla(regla_id=9, texto_regla='+pengu/USDT>0,048', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 15:41:10.964892 regla verificada <Regla(regla_id=10, texto_regla='+LEVER/USDT>0,00195', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 15:41:11.762782 regla verificada <Regla(regla_id=11, texto_regla='+PDA/USDT>0,034', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 15:41:12.563034 regla verificada <Regla(regla_id=12, texto_regla='+UNI/Usdt>12,5', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 15:41:13.369409 regla verificada <Regla(regla_id=13, texto_regla='+LTC/USDT>140', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 15:41:14.173928 regla verificada <Regla(regla_id=14, texto_regla='+LSK/USDT>0,91', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 15:41:14.966607 regla verificada <Regla(regla_id=15, texto_regla='+UNI/USDT>10,48', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 15:41:15.769788 regla verificada <Regla(regla_id=16, texto_regla='+VANA/USDT>10,2', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 15:41:16.565347 regla verificada <Regla(regla_id=17, texto_regla='+UNI/USDT<5', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 15:41:17.373959 regla verificada <Regla(regla_id=18, texto_regla='+NEXO/USDT<0,9', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 15:41:18.163976 regla verificada <Regla(regla_id=19, texto_regla='+REQ/USDT<0,086', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 15:42:56.119230 fin ejecución
+2025-06-04 16:28:31.446854 inicio de ejecución
+2025-06-04 16:28:31.447757 lectura de config OK
+2025-06-04 16:28:31.464029 creacion de instancia de Binance ok
+2025-06-04 16:28:39.679612 creacion de sesión a BD ok
+2025-06-04 16:28:58.952900 regla verificada <Regla(regla_id=1, texto_regla='+XVS/USDT<4,8', fecha_creacion='2025-04-04 17:53:39.110604')>, resultado False
+2025-06-04 16:28:59.751486 regla verificada <Regla(regla_id=2, texto_regla='+AVA/USDT<0,42', fecha_creacion='2025-04-04 18:38:08.002312')>, resultado False
+2025-06-04 16:29:00.546723 regla verificada <Regla(regla_id=3, texto_regla='+NEXO/USDT>1,561
++JUP/USDT>1,49', fecha_creacion='2025-04-04 18:48:50.971468')>, resultado False
+2025-06-04 16:29:01.355749 regla verificada <Regla(regla_id=4, texto_regla='+NEXO/USDT>1,561', fecha_creacion='2025-04-04 18:51:07.528335')>, resultado False
+2025-06-04 16:29:02.147137 regla verificada <Regla(regla_id=5, texto_regla='+JUP/USDT>1,49', fecha_creacion='2025-04-04 18:51:07.528335')>, resultado False
+2025-06-04 16:29:02.951584 regla verificada <Regla(regla_id=6, texto_regla='+REZ/USDT>0,07', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 16:29:03.757677 regla verificada <Regla(regla_id=7, texto_regla='+TNSR/USDT>0,88', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 16:29:04.548457 regla verificada <Regla(regla_id=8, texto_regla='+MANTA/USDT>1,4', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 16:29:05.365014 regla verificada <Regla(regla_id=9, texto_regla='+pengu/USDT>0,048', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 16:29:06.159369 regla verificada <Regla(regla_id=10, texto_regla='+LEVER/USDT>0,00195', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 16:29:06.963440 regla verificada <Regla(regla_id=11, texto_regla='+PDA/USDT>0,034', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 16:29:07.761888 regla verificada <Regla(regla_id=12, texto_regla='+UNI/Usdt>12,5', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 16:29:08.568795 regla verificada <Regla(regla_id=13, texto_regla='+LTC/USDT>140', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 16:29:09.371699 regla verificada <Regla(regla_id=14, texto_regla='+LSK/USDT>0,91', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 16:29:10.170982 regla verificada <Regla(regla_id=15, texto_regla='+UNI/USDT>10,48', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 16:29:10.968006 regla verificada <Regla(regla_id=16, texto_regla='+VANA/USDT>10,2', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 16:29:11.770730 regla verificada <Regla(regla_id=17, texto_regla='+UNI/USDT<5', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 16:29:12.565583 regla verificada <Regla(regla_id=18, texto_regla='+NEXO/USDT<0,9', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 16:29:13.371328 regla verificada <Regla(regla_id=19, texto_regla='+REQ/USDT<0,086', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-04 16:31:50.057029 fin ejecución
+2025-06-14 13:38:36.492491 inicio de ejecución
+2025-06-14 13:38:36.508204 lectura de config OK
+2025-06-14 13:38:36.524276 creacion de instancia de Binance ok
+2025-06-14 13:38:54.662536 creacion de sesión a BD ok
+2025-06-14 13:39:07.778875 nueva regla EMA 20 1d AAVE/USDT +5,0
+2025-06-14 13:40:21.947944 regla verificada <Regla(regla_id=1, texto_regla='+XVS/USDT<4,8', fecha_creacion='2025-04-04 17:53:39.110604')>, resultado False
+2025-06-14 13:40:22.737651 regla verificada <Regla(regla_id=2, texto_regla='+AVA/USDT<0,42', fecha_creacion='2025-04-04 18:38:08.002312')>, resultado False
+2025-06-14 13:40:23.546311 regla verificada <Regla(regla_id=3, texto_regla='+NEXO/USDT>1,561
++JUP/USDT>1,49', fecha_creacion='2025-04-04 18:48:50.971468')>, resultado False
+2025-06-14 13:40:24.361110 regla verificada <Regla(regla_id=4, texto_regla='+NEXO/USDT>1,561', fecha_creacion='2025-04-04 18:51:07.528335')>, resultado False
+2025-06-14 13:40:25.165310 regla verificada <Regla(regla_id=5, texto_regla='+JUP/USDT>1,49', fecha_creacion='2025-04-04 18:51:07.528335')>, resultado False
+2025-06-14 13:40:25.971919 regla verificada <Regla(regla_id=6, texto_regla='+REZ/USDT>0,07', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:40:26.774981 regla verificada <Regla(regla_id=7, texto_regla='+TNSR/USDT>0,88', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:40:27.581397 regla verificada <Regla(regla_id=8, texto_regla='+MANTA/USDT>1,4', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:40:28.387683 regla verificada <Regla(regla_id=9, texto_regla='+pengu/USDT>0,048', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:40:29.188455 regla verificada <Regla(regla_id=10, texto_regla='+LEVER/USDT>0,00195', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:40:29.987176 regla verificada <Regla(regla_id=11, texto_regla='+PDA/USDT>0,034', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:40:30.794307 regla verificada <Regla(regla_id=12, texto_regla='+UNI/Usdt>12,5', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:40:31.606408 regla verificada <Regla(regla_id=13, texto_regla='+LTC/USDT>140', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:40:32.406188 regla verificada <Regla(regla_id=14, texto_regla='+LSK/USDT>0,91', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:40:33.207864 regla verificada <Regla(regla_id=15, texto_regla='+UNI/USDT>10,48', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:40:34.009913 regla verificada <Regla(regla_id=16, texto_regla='+VANA/USDT>10,2', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:40:34.813205 regla verificada <Regla(regla_id=17, texto_regla='+UNI/USDT<5', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:40:35.617528 regla verificada <Regla(regla_id=18, texto_regla='+NEXO/USDT<0,9', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:40:36.416578 regla verificada <Regla(regla_id=19, texto_regla='+REQ/USDT<0,086', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:40:38.327534 regla verificada <Regla(regla_id=20, texto_regla='EMA 20 1d AAVE/USDT +5,0', fecha_creacion='2025-06-14 16:38:36.492491')>, resultado True
+2025-06-14 13:43:32.732532 inicio de ejecución
+2025-06-14 13:43:32.732532 lectura de config OK
+2025-06-14 13:43:32.757357 creacion de instancia de Binance ok
+2025-06-14 13:44:21.971625 creacion de sesión a BD ok
+2025-06-14 13:45:28.632208 regla verificada <Regla(regla_id=1, texto_regla='+XVS/USDT<4,8', fecha_creacion='2025-04-04 17:53:39.110604')>, resultado False
+2025-06-14 13:45:29.444068 regla verificada <Regla(regla_id=2, texto_regla='+AVA/USDT<0,42', fecha_creacion='2025-04-04 18:38:08.002312')>, resultado False
+2025-06-14 13:45:30.263925 regla verificada <Regla(regla_id=3, texto_regla='+NEXO/USDT>1,561
++JUP/USDT>1,49', fecha_creacion='2025-04-04 18:48:50.971468')>, resultado False
+2025-06-14 13:45:31.075209 regla verificada <Regla(regla_id=4, texto_regla='+NEXO/USDT>1,561', fecha_creacion='2025-04-04 18:51:07.528335')>, resultado False
+2025-06-14 13:45:31.889684 regla verificada <Regla(regla_id=5, texto_regla='+JUP/USDT>1,49', fecha_creacion='2025-04-04 18:51:07.528335')>, resultado False
+2025-06-14 13:45:32.679006 regla verificada <Regla(regla_id=6, texto_regla='+REZ/USDT>0,07', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:45:33.481617 regla verificada <Regla(regla_id=7, texto_regla='+TNSR/USDT>0,88', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:45:34.287773 regla verificada <Regla(regla_id=8, texto_regla='+MANTA/USDT>1,4', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:45:35.085946 regla verificada <Regla(regla_id=9, texto_regla='+pengu/USDT>0,048', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:45:35.898246 regla verificada <Regla(regla_id=10, texto_regla='+LEVER/USDT>0,00195', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:45:36.712831 regla verificada <Regla(regla_id=11, texto_regla='+PDA/USDT>0,034', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:45:37.512657 regla verificada <Regla(regla_id=12, texto_regla='+UNI/Usdt>12,5', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:45:38.306822 regla verificada <Regla(regla_id=13, texto_regla='+LTC/USDT>140', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:45:39.120163 regla verificada <Regla(regla_id=14, texto_regla='+LSK/USDT>0,91', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:45:39.920537 regla verificada <Regla(regla_id=15, texto_regla='+UNI/USDT>10,48', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:45:40.729727 regla verificada <Regla(regla_id=16, texto_regla='+VANA/USDT>10,2', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:45:41.528254 regla verificada <Regla(regla_id=17, texto_regla='+UNI/USDT<5', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:45:42.340246 regla verificada <Regla(regla_id=18, texto_regla='+NEXO/USDT<0,9', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False
+2025-06-14 13:45:43.138882 regla verificada <Regla(regla_id=19, texto_regla='+REQ/USDT<0,086', fecha_creacion='2025-04-04 18:54:06.140534')>, resultado False

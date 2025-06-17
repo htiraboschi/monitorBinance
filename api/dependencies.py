@@ -26,5 +26,4 @@ except Exception as e:
 
 
 async def get_db():
-    async for session in get_db_session(db_file_path):
-        yield session
+    return await get_db_session(db_file_path)
