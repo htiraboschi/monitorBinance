@@ -13,7 +13,7 @@ import re
 import os
 import platform
 from enum import Enum  # para enumerados mayor, menor, igual
-from tradingview_ta import TA_Handler
+from tradingview_ta import TA_Handler, Interval
 import pandas as pd
 import pickle
 from pathlib import Path
@@ -22,6 +22,7 @@ import sys
 import json
 import asyncio
 
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from bot import TelegramBot
 from database.session import get_db_session
@@ -29,7 +30,8 @@ from database.crud import create_regla, get_reglas, delete_regla
 from database.models import Regla
 
 # Constantes
-PAUSA_BINANCE = 500  #pausa entre consultas a Binances. Unidad: milisegundos
+PAUSA_BINANCE = 500  #pausa entre consultas a Binance. Unidad: milisegundos
+PAUSA_TRADINGVIEW = 48000 #pausa entre consultas a TradingView. Unidad: milisegundos
 RUTA_BOT = "./bot/"
 ARCHIVO_LOG = RUTA_BOT + "log.txt"
 LOG_MAXIMO = 1024  #tamaño máximo del archivo de log (en kilobytes) antes de ser cortado
@@ -37,6 +39,9 @@ ARCHIVO_ORDENES_ABIERTAS = RUTA_BOT + "ordenes.pkl"
 ARCHIVO_FECHA_REPORTE_MATUTINO = RUTA_BOT + "fecha_reporte.pkl"
 HORA_REPORTE = datetime_time(6, 0)
 FLAG_ALARMA_CERO_REGLAS = RUTA_BOT + "flagCeroAlarmas.txt"
+MAX_INTENTOS_TELEGRAM = 3
+PAUSA_TELEGRAM = 0.1 #pausa entre consultas a Telegram. Unidad: segundos
+
 
 # Lectura de configuraciones
 # Ruta al archivo JSON
@@ -48,10 +53,58 @@ class comparacion(Enum):
     IGUAL = 2
     MENOR = 3
 
+#variables para pausar consulta a TradingView cuando da error 429
+TV_BLOQUEO_HORA = None
+TV_ARCHIVO_BLOQUEO = 'tv_bloqueo.dat'
+TV_BLOQUEO_TIEMPO = 180 #define en segundos por cuanto tiempo se pausa la consulta Trading View
+
+#funciones para facilitar pausa la consulta a TradingView cuando se enoja y da error 429
+def TV_bloquear(telegram_token):
+    """Establece que se debe evitar consultar a TradingView.
+    Setea hora de desbloqueo en variable global y en archivo"""
+    global TV_BLOQUEO_HORA
+
+    #define la nueva hora para desbloquear consultas a TradingView
+    TV_BLOQUEO_HORA = datetime.now() + timedelta(seconds=TV_BLOQUEO_TIEMPO)
+
+    #guarda en archivo para persistencia
+    with open(TV_ARCHIVO_BLOQUEO, 'wb') as f:
+        pickle.dump(TV_BLOQUEO_HORA,f)
     
+    #registro que pasé a modo bloqueado en TradingView
+    text_notificacion = f"Se pasa a bloqueo de TradingView por {TV_BLOQUEO_TIEMPO} segundos"
+    registrar_log(text_notificacion)
+    TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram(text_notificacion)
+
+def TV_bloqueado():
+    """
+    Verifica si las consultas a TradingView están bloqueadas
+    :return: True si aún está bloqueado, False si ya se puede consultar
+    """
+    global TV_BLOQUEO_HORA
+
+    #veo si está seteada la hora a partir de la cual puedo consultar.
+    #Puede ser que haya levantado la aplicación y no tenga valor la variable
+    if TV_BLOQUEO_HORA is None:
+        try:
+            if os.path.exists(TV_ARCHIVO_BLOQUEO):
+                with open(TV_ARCHIVO_BLOQUEO,'rb') as f:
+                    TV_BLOQUEO_HORA = pickle.load(f)
+            else:
+                #si no existe el archivo, asumo no bloqueado y pongo una hora anterior a ahora
+                TV_BLOQUEO_HORA = datetime.now() - timedelta(seconds=1)
+        except:
+            # En caso de error en el archivo, asume no bloqueado
+            TV_BLOQUEO_HORA = datetime.now() - timedelta(seconds=1)
+    
+    bloqueado = datetime.now() < TV_BLOQUEO_HORA
+    
+    return bloqueado
+
+
 def parsear_regla(regla):
     # Definir el patrón de la regla
-    patron = r"\+(\w+\/\w+)\s*([<>])\s*([\d,]+)"
+    patron = r"\+(\w+\/?\w+)\s*([<>])\s*([\d,]+)"
 
     # Intentar hacer coincidir el patrón con la cadena
     coincidencia = re.match(patron, regla)
@@ -67,7 +120,7 @@ def parsear_regla(regla):
         
     return operador, simbolo, valor, reglaOk
 
-def parsear_regla_caida(regla):
+def parsear_regla_caida(regla): ##Todo: caso TradingView
     # Definir el patrón de la regla con una expresión regular
     patron = r'(?i)(caída|caida)\s+(\S+)/(\S+)\s+(\S+)\s+(\d+(?:[.,]\d+)?)' #ejemplo: caida JASMY/USDT 1m 0,1
 
@@ -87,7 +140,7 @@ def parsear_regla_caida(regla):
         
     return par, intervalo, valor, reglaOk
 
-def parsear_regla_subida(regla):
+def parsear_regla_subida(regla): ##Todo: caso TradingView
     # Definir el patrón de la regla con una expresión regular
     patron = r'(?i)(subida)\s+(\S+)/(\S+)\s+(\S+)\s+(\d+(?:[.,]\d+)?)' #ejemplo: subida JASMY/USDT 1m 0,1
 
@@ -109,7 +162,7 @@ def parsear_regla_subida(regla):
     
 def parsear_regla_linea(regla):
     # Definir el patrón de la regla con una expresión regular
-    patron = r"linea (sobre|bajo) (\S+)/(\S+) \d{2}/\d{2}/\d{4} (\d+(?:[.,]\d+)?) \d{2}/\d{2}/\d{4} (\d+(?:[.,]\d+)?)" #ejemplo linea bajo BTC/USDT 01/01/2023 123.45 02/02/2024 678.90
+    patron = r"linea (sobre|bajo) (\S+) \d{2}/\d{2}/\d{4} (\d+(?:[.,]\d+)?) \d{2}/\d{2}/\d{4} (\d+(?:[.,]\d+)?)" #ejemplo linea bajo BTC/USDT 01/01/2023 123.45 02/02/2024 678.90
     
     # Intentar hacer coincidir el patrón con la cadena
     coincidencia = re.match(patron, regla)
@@ -117,11 +170,11 @@ def parsear_regla_linea(regla):
     if coincidencia:
         # Si hay una coincidencia, extraer los grupos
         bajoOsobre = coincidencia.group(1)
-        par = coincidencia.group(2)+"/"+coincidencia.group(3)
+        par = coincidencia.group(2)
         fechaA = re.findall(r"\d{2}/\d{2}/\d{4}",regla)[0]
-        valorA = coincidencia.group(4)
+        valorA = coincidencia.group(3)
         fechaB = re.findall(r"\d{2}/\d{2}/\d{4}",regla)[1]
-        valorB = coincidencia.group(5)        
+        valorB = coincidencia.group(4)        
         reglaOk = True
     else:
         # Si no hay una coincidencia, establecer las variables en None
@@ -129,7 +182,7 @@ def parsear_regla_linea(regla):
 
     return bajoOsobre, par, fechaA, valorA, fechaB, valorB, reglaOk
 
-def parsear_regla_RSI(regla):
+def parsear_regla_RSI(regla): ##Todo: caso TradingView
     # Definir el patrón de la regla con una expresión regular
     patron = r'(?i)(RSI)\s+(\S+)/(\S+)\s+(\S+)\s*([<>])\s*(\d+(?:[.,]\d+)?)' #ejemplo: RSI LTC/USDT 15m <41
 
@@ -170,7 +223,51 @@ def parsear_regla_EMA(regla):
     
     return intervalo, periodo, par, margen, reglaOk
 
-def evaluar_regla(binance,regla):
+def valor_actual(binance, operador, telegram_token: str):
+    '''Devuelve el valor actual del operador. Si el operador tiene "/", asume que es el par
+    criptomoneda/USDT y lo consulta en Binance. Si no tiene el operador "/", asume que es un
+    símbolo a consultar en TradingView'''
+    if "/" in operador:
+        #tiene que ser una cripto => consultamos a Binance
+        retorno_valor_actual = binance.fetch_ticker(operador.upper())['last']
+        time.sleep(PAUSA_BINANCE / 1000)
+        return retorno_valor_actual
+    else:
+        #asumimos que es un símbolo a consultar a TradingView
+        ultimo_error = None
+        for exchange in ["NASDAQ", "NYSE", "AMEX"]:
+            if not TV_bloqueado():
+                try:
+                    ta_handler = TA_Handler(
+                        symbol=operador,
+                        screener="america",  # "america" para acciones de EE.UU.
+                        exchange=exchange,
+                        interval=Interval.INTERVAL_1_MINUTE  # Intervalo corto para precio actual
+                    )
+                    registrar_log(f"Hago consulta a trading view con {ta_handler.symbol} {ta_handler.screener} {ta_handler.exchange}")
+                    analysis = ta_handler.get_analysis()
+                    time.sleep(PAUSA_TRADINGVIEW / 1000)
+                    return analysis.indicators["close"]
+                except Exception as e:
+                    ultimo_error = e
+                    #asumo que no encontró el símbolo y dejo que siga el "for" pero si el error es 
+                    #el 429 quiere decir que consulté demasiado rápido y me bannearon. Bloqueo consultas a TradingView
+                    if "HTTP status code: 429" in str(e):
+                        registrar_log(f"Error 429 (Rate Limit).")
+                        TV_bloquear(telegram_token)
+                        continue 
+                    else:
+                        texto_error = f"Error al obtener precio de {operador}: {ultimo_error}"
+                        registrar_log(texto_error)
+                    time.sleep(PAUSA_TRADINGVIEW / 1000)
+        #si llegó acá, falló en obtener el valor del símbolo por alguna razón
+        if not TV_bloqueado():
+            texto_error = f"Error al obtener precio de {operador}: {ultimo_error}"
+            registrar_log(texto_error)
+            TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram(texto_error)
+        return None
+
+def evaluar_regla(binance,regla, telegram_token: str):
     try:
         if regla.startswith('+'):
             #regla de verificación de limites de valor
@@ -180,7 +277,7 @@ def evaluar_regla(binance,regla):
                 return False, False
     
             # Obtener el precio actual
-            precio_actual = binance.fetch_ticker(operador.upper())['last']
+            precio_actual = valor_actual(binance, operador, telegram_token)
             # Evaluar la regla
             if comparador == '<':
                 return True, precio_actual < valor
@@ -218,7 +315,7 @@ def evaluar_regla(binance,regla):
             if not reglaOk:
                 return False, False
             else:
-                return True, verificar_linea(binance, bajoOsobre, par, fechaA, valorA, fechaB, valorB)
+                return True, verificar_linea(binance, telegram_token, bajoOsobre, par, fechaA, valorA, fechaB, valorB)
         elif regla.startswith('E'):
             #EMA
             # Descomponer la regla
@@ -233,16 +330,12 @@ def evaluar_regla(binance,regla):
     except Exception as e:
         return False, False
 
-def validar_en_binance(binance,regla):
-    reglaValida , reglaResultado = evaluar_regla(binance,regla)
+def validar_regla(binance,regla, telegram_token: str):
+    reglaValida , reglaResultado = evaluar_regla(binance,regla,telegram_token)
     return reglaValida
 
-def evaluar_en_binance(binance,regla):
-    reglaValida , reglaResultado = evaluar_regla(binance,regla)
-    return reglaResultado
-
 def verificar_caida(binance, par, duracion, caidaPorcentual):
-    ohlcv = binance.fetch_ohlcv(par, timeframe=duracion)
+    ohlcv = binance.fetch_ohlcv(par, timeframe=duracion) ##Todo: caso TradingView
     ultimo_periodo = ohlcv[-1]
     high = ultimo_periodo[2]
     cierre = ultimo_periodo[4]
@@ -250,7 +343,7 @@ def verificar_caida(binance, par, duracion, caidaPorcentual):
     return variacion_real < -caidaPorcentual
 
 def verificar_subida(binance, par, duracion, subidaPorcentual):
-    ohlcv = binance.fetch_ohlcv(par, timeframe=duracion)
+    ohlcv = binance.fetch_ohlcv(par, timeframe=duracion) ##Todo: caso TradingView
     ultimo_periodo = ohlcv[-1]
     low = ultimo_periodo[3]
     cierre = ultimo_periodo[4]
@@ -283,7 +376,7 @@ def calcular_EMA(binance, par, intervalo, periodo):
     
     def obtener_datos_binance(binance, par, intervalo, periodo):
         try:
-            velas = binance.fetch_ohlcv(par.upper().replace('/',''), timeframe=periodo, limit=intervalo)
+            velas = binance.fetch_ohlcv(par.upper().replace('/',''), timeframe=periodo, limit=intervalo) ##Todo: caso TradingView
             datos = pd.DataFrame(velas, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
             return datos
         except Exception as e:
@@ -307,8 +400,8 @@ def convertir_fecha_a_numero(fecha):
     fecha_obj = datetime.strptime(fecha, "%d/%m/%Y")
     return (fecha_obj - fecha_inicial).days
 
-def verificar_linea(binance,bajoOsobre, par, fechaA, valorA, fechaB, valorB):
-    precio_actual = binance.fetch_ticker(par.upper())['last']
+def verificar_linea(binance,telegram_token,bajoOsobre, par, fechaA, valorA, fechaB, valorB):
+    precio_actual = valor_actual(binance,par,telegram_token)
     fechaAnumero = convertir_fecha_a_numero(fechaA)
     fechaBnumero = convertir_fecha_a_numero(fechaB)
     fechahoynumero = convertir_fecha_a_numero(datetime.now().strftime("%d/%m/%Y"))
@@ -328,7 +421,7 @@ def verificar_linea(binance,bajoOsobre, par, fechaA, valorA, fechaB, valorB):
 def verificar_EMA(binance, par, intervalo, periodo, margen):
     EMA = calcular_EMA(binance, par, intervalo, periodo)
     if EMA:
-        valorPar = binance.fetch_ticker(par.upper())['last']
+        valorPar = binance.fetch_ticker(par.upper())['last'] ##Todo: caso TradingView
         return valorPar < EMA + margen
     else:
         return None
@@ -359,6 +452,39 @@ def create_binance_instance(api_key, api_secret):
         })
     binance.options['warnOnFetchOpenOrdersWithoutSymbol'] = False #esto hace que pueda traer todas las ordenes abiertas sin que me de error la consulta
     return binance
+
+
+def consultar_mensajes_Telegram(telegram_token: str) -> list:
+    """
+    Intenta obtener mensajes del bot de Telegram con reintentos.
+    
+    Args:
+        telegram_token: Token del bot de Telegram
+    Returns:
+        Lista de mensajes si tiene éxito, None si falla después de todos los intentos
+    """
+    intento = 0
+    ultimo_error = None
+    while intento < MAX_INTENTOS_TELEGRAM:
+        intento += 1
+        try:
+            mensajes = TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).consultar_bot_telegram()
+            if mensajes is not None:
+                registrar_log(f"Se recuperaron mensajes de Telegram luego de {intento} intentos")
+                return mensajes
+            # Si estamos aquí, mensajes es None pero no hubo excepción, esperamos y reintentamos
+            if intento < MAX_INTENTOS_TELEGRAM:
+                time.sleep(PAUSA_TELEGRAM)
+        except Exception as e:
+            ultimo_error = f"Intento conección a Telegram número {intento} fallido. Error: {str(e)}"
+            registrar_log(ultimo_error)
+            TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram(ultimo_error)
+            if intento < MAX_INTENTOS_TELEGRAM:
+                time.sleep(PAUSA_TELEGRAM)
+    #Si llegamos acá es por que todos los intentos fallaron
+    mensaje_error_final = f"No se pudo obtener mensajes de Telegram luego de {MAX_INTENTOS_TELEGRAM} intentos. Último error: {ultimo_error}"
+    registrar_log(mensaje_error_final)
+    TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram(mensaje_error_final)
 
 async def main():
     
@@ -404,100 +530,119 @@ async def main():
         else:
             registrar_log('creacion de sesión a BD no ok')
         
-        # Consultar bot de Telegram
-        mensajes = TelegramBot.MiBotTelegram(telegram_token,ARCHIVO_LOG).consultar_bot_telegram()
-        for mensaje in mensajes:
-            #reemplazo un "." por ","
-            mensaje = mensaje.replace(".", ",")
-            if mensaje.startswith('+') or mensaje.startswith('c') or mensaje.startswith('s') or mensaje.startswith('R') or mensaje.startswith('l') or mensaje.startswith('E'):
-                #si la regla es "command reboot", reinicio la raspberry
-                if mensaje == "command reboot":
-                    registrar_log("Se enviará comando 'sudo reboot'")
-                    TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram("Se enviará comando 'sudo reboot'")
-                    os.system('sudo reboot') 
-                    sys.exit()
-                # Verificar si el mensaje es una regla que se puede evaluar en Binance
-                elif validar_en_binance(binance,mensaje):
-                    # Agregar la regla a la base y registrar en el log
-                    await create_regla(session, Regla(mensaje))
-                    registrar_log(f'nueva regla {mensaje}')
-                    TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram(f'nueva regla {mensaje}')
-                else: TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram(f'Regla {mensaje} no valida. No se incorpora a reglas actuales')
-            elif mensaje.startswith('?'):
-                reglas = await get_reglas(session)
-                texto_lista_reglas = ''
-                for regla in reglas:
-                    texto_lista_reglas += f'{regla.texto_regla}\n'
-                TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram(f'Reglas actuales:\n{texto_lista_reglas}')
-                    
+        #ahora entro en el lazo que se repite continuamente:
+        while True:
+            # Consultar bot de Telegram
+            mensajes = consultar_mensajes_Telegram(telegram_token)
+            if mensajes is not None:
+                for mensaje in mensajes:
+                    #reemplazo un "." por ","
+                    mensaje = mensaje.replace(".", ",")
+                    if mensaje.startswith('+') or mensaje.startswith('c') or mensaje.startswith('s') or mensaje.startswith('R') or mensaje.startswith('l') or mensaje.startswith('E'):
+                        #si la regla es "command reboot", reinicio la raspberry
+                        if mensaje == "command reboot":
+                            registrar_log("Se enviará comando 'sudo reboot'")
+                            TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram("Se enviará comando 'sudo reboot'")
+                            os.system('sudo reboot') 
+                            sys.exit()
+                        # Verificar si el mensaje es una regla que se puede evaluar en Binance
+                        elif validar_regla(binance,mensaje,telegram_token):
+                            # Agregar la regla a la base y registrar en el log
+                            await create_regla(session, Regla(mensaje))
+                            registrar_log(f'nueva regla {mensaje}')
+                            TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram(f'nueva regla {mensaje}')
+                        else: TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram(f'Regla {mensaje} no valida. No se incorpora a reglas actuales')
+                    elif mensaje.startswith('?'):
+                        reglas = await get_reglas(session)
+                        texto_lista_reglas = ''
+                        for regla in reglas:
+                            texto_lista_reglas += f'{regla.texto_regla}\n'
+                        TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram(f'Reglas actuales:\n{texto_lista_reglas}')
+                        
 
-        # Evaluar cada regla en Binance
-        reglas = await get_reglas(session)     # Lista se carga dentro del contexto
+            # Evaluar cada regla en Binance
+            reglas = await get_reglas(session)     # Lista se carga dentro del contexto
 
-        for regla in reglas:
-            resultado_regla = evaluar_en_binance(binance,regla.texto_regla)
-            if resultado_regla:
-                # Si la regla se cumple, notificar en el bot de Telegram y eliminarla del listado de reglas
-                TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram(f'Regla verificada: {regla}')
-                reglas.remove(regla)
-                await delete_regla(session, regla)
-            
-            registrar_log(f'regla verificada {regla}, resultado {resultado_regla}')
-
-            time.sleep(PAUSA_BINANCE / 1000)
-
-
-        #chequeo que no haya ordenes que se ejecutaron desde la última ejecución
-        #recupero de Binance todas las órdenes existentes
-        currentOrders = binance.fetch_open_orders()
-        #recupero de archivo local todas las órdenes existentes en la corrida anterior
-        with open(ARCHIVO_ORDENES_ABIERTAS,'rb') as archivoOrdenes:
-            ordenesAnteriorCorrida = pickle.load(archivoOrdenes)
-        archivoOrdenes.close()
-        #veo si alguna orden fue ejecutada entre corridas
-        for orden in ordenesAnteriorCorrida:
-            orderId, symbol = orden
-            if not [order for order in currentOrders if order['info']['orderId'] == orderId]:
-                TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram(f'Orden ejecutada: {orden}')
-        #guardo todas las órdenes recuperadas de Binance para la corrida siguiente
-        listaOrdenesActualizada = []
-        for orden in currentOrders:
-            listaOrdenesActualizada.append((orden["info"]["orderId"],orden["info"]["symbol"]))
-        with open(ARCHIVO_ORDENES_ABIERTAS,'wb') as archivoOrdenes:
-            pickle.dump(listaOrdenesActualizada,archivoOrdenes)
-            archivoOrdenes.close()
+            for regla in reglas:
+                resultado_validacion, resultado_regla = evaluar_regla(binance,regla.texto_regla,telegram_token)
+                if resultado_regla:
+                    # Si la regla se cumple, notificar en el bot de Telegram y eliminarla del listado de reglas
+                    TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram(f'Regla verificada: {regla}')
+                    reglas.remove(regla)
+                    await delete_regla(session, regla)
                 
-        #alarma si no hay reglas
-        #si la cantidad de alarmas es menor o igual a 1, seteo alarma (el menor a 1 es por si estuviera contando una linea en blanco al final del archivo)
-        if len(reglas) <= 1:
-            alarmaCeroReglas = True
-            #solo disparo alarma si no había notificado antes
-            if not os.path.exists(FLAG_ALARMA_CERO_REGLAS):
-                TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram('No hay alarmas definidas. Recordar borrar el flag para reactivar esta alarma.')
-                #seteo el flag para no volver a notificar (se debe borrar por fuera del programa cuando se hayan restablecido las reglas)
-                Path(FLAG_ALARMA_CERO_REGLAS).touch()
-        else:
-            alarmaCeroReglas = False
-        # Mover entradas del log del mes pasado
-        mover_entradas_log()
+                registrar_log(f'regla verificada {regla}, resultado {resultado_regla}')
 
-        #si llegué al final y todavía no notifique hoy que estoy operativo, lo hago.
-        try:
-            #busco la fecha de la última notificación
-            with open(ARCHIVO_FECHA_REPORTE_MATUTINO,'rb') as archivoFechaReporte:
-                fecha_reporte_anterior = pickle.load(archivoFechaReporte)
-        except:
-            #si llegué acá es por que no hay registro de reporte matutino. Pongo como el anterior reporte fue ayer
-            fecha_reporte_anterior = datetime.now().date() - timedelta(days=1)
-        #acá ya puedo comparar la fecha actual con fecha_reporte_anterior y ver si ya es hora de generar el nuevo reporte en Telegram
-        if fecha_reporte_anterior < datetime.now().date() and datetime.now().time() >= HORA_REPORTE:
-            reporte = f"Estado actual es operativo. \nCantidad de reglas: {len(reglas)}. \nCantidad de ordenes activas: {len(listaOrdenesActualizada)}."
-            if alarmaCeroReglas:
-                reporte = reporte + " \nALARMA: cero reglas!"
-            TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram(reporte)
-            with open(ARCHIVO_FECHA_REPORTE_MATUTINO,'wb') as archivoFechaReporte:
-                pickle.dump(datetime.now().date(),archivoFechaReporte)
-                archivoFechaReporte.close()
+
+            #chequeo que no haya ordenes que se ejecutaron desde la última ejecución
+            max_intentos = 3
+            intento = 0
+            exito = False
+            
+            while intento < max_intentos and not exito:
+                try:
+                    intento += 1
+                    #recupero de Binance todas las órdenes existentes
+                    currentOrders = binance.fetch_open_orders()
+                    exito = True
+                    registrar_log(f"Se recuperaron ordenes abiertas en Binance en el intento {intento}")
+                except Exception as e:
+                    registrar_log(f"Falló el intento {intento} de recuperar las órdenes de binance. Error: {e}")
+                    time.sleep(1)
+            if not exito:
+                texto_error = f"Falló recupero de órdenes en Binance luego de {intento} intentos. Ver log por errores ocurridos"
+                registrar_log(texto_error)
+                TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram(texto_error)
+            else:
+                #recupero de archivo local todas las órdenes existentes en la corrida anterior
+                with open(ARCHIVO_ORDENES_ABIERTAS,'rb') as archivoOrdenes:
+                    ordenesAnteriorCorrida = pickle.load(archivoOrdenes)
+                archivoOrdenes.close()
+                
+                #veo si alguna orden fue ejecutada entre corridas
+                for orden in ordenesAnteriorCorrida:
+                    orderId, symbol = orden
+                    if not [order for order in currentOrders if order['info']['orderId'] == orderId]:
+                        TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram(f'Orden ejecutada: {orden}')
+                #guardo todas las órdenes recuperadas de Binance para la corrida siguiente
+                listaOrdenesActualizada = []
+                for orden in currentOrders:
+                    listaOrdenesActualizada.append((orden["info"]["orderId"],orden["info"]["symbol"]))
+                with open(ARCHIVO_ORDENES_ABIERTAS,'wb') as archivoOrdenes:
+                    pickle.dump(listaOrdenesActualizada,archivoOrdenes)
+                    archivoOrdenes.close()
+                    
+            #alarma si no hay reglas
+            #si la cantidad de alarmas es menor o igual a 1, seteo alarma (el menor a 1 es por si estuviera contando una linea en blanco al final del archivo)
+            if len(reglas) <= 1:
+                alarmaCeroReglas = True
+                #solo disparo alarma si no había notificado antes
+                if not os.path.exists(FLAG_ALARMA_CERO_REGLAS):
+                    TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram('No hay alarmas definidas. Recordar borrar el flag para reactivar esta alarma.')
+                    #seteo el flag para no volver a notificar (se debe borrar por fuera del programa cuando se hayan restablecido las reglas)
+                    Path(FLAG_ALARMA_CERO_REGLAS).touch()
+            else:
+                alarmaCeroReglas = False
+            # Mover entradas del log del mes pasado
+            mover_entradas_log()
+
+            #si llegué al final y todavía no notifique hoy que estoy operativo, lo hago.
+            try:
+                #busco la fecha de la última notificación
+                with open(ARCHIVO_FECHA_REPORTE_MATUTINO,'rb') as archivoFechaReporte:
+                    fecha_reporte_anterior = pickle.load(archivoFechaReporte)
+            except:
+                #si llegué acá es por que no hay registro de reporte matutino. Pongo como el anterior reporte fue ayer
+                fecha_reporte_anterior = datetime.now().date() - timedelta(days=1)
+            #acá ya puedo comparar la fecha actual con fecha_reporte_anterior y ver si ya es hora de generar el nuevo reporte en Telegram
+            if fecha_reporte_anterior < datetime.now().date() and datetime.now().time() >= HORA_REPORTE:
+                reporte = f"Estado actual es operativo. \nCantidad de reglas: {len(reglas)}. \nCantidad de ordenes activas: {len(listaOrdenesActualizada)}."
+                if alarmaCeroReglas:
+                    reporte = reporte + " \nALARMA: cero reglas!"
+                TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram(reporte)
+                with open(ARCHIVO_FECHA_REPORTE_MATUTINO,'wb') as archivoFechaReporte:
+                    pickle.dump(datetime.now().date(),archivoFechaReporte)
+                    archivoFechaReporte.close()
 
     except Exception as e:
         # Si ocurre un error, notificar en el bot de Telegram y registrar en el log
@@ -506,11 +651,12 @@ async def main():
         TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram(f'Traza de llamados: {error_trace}')
         registrar_log(f'Error: {str(e)}')
 
-    # Fin de ejecución
-    registrar_log('fin ejecución')
+        # Fin de ejecución
+        registrar_log('fin ejecución')
+        TelegramBot.MiBotTelegram(telegram_token, ARCHIVO_LOG).notificar_en_bot_telegram('fin ejecución')
 
-    # Cerrar la sesión de la base de datos
-    await session.close()
+        # Cerrar la sesión de la base de datos
+        await session.close()
 
 if __name__ == "__main__":
     asyncio.run(main())

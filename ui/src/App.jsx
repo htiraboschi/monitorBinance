@@ -3,7 +3,9 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import React, {useEffect, useState} from 'react'
 
-const BASE_URL = 'http://192.168.1.51:8000/'
+const BASE_URL = (window.location.hostname === 'localhost' || window.location.hostname.startsWith('192.168.'))
+  ? `http://${window.location.hostname}:8000/`  // Usa la misma IP del frontend
+  : '/';  // Para producción
 
 function App() {
   const [reglas, setReglas] = useState([])
