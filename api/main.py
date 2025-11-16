@@ -6,7 +6,7 @@ from pydantic import BaseModel
 from api.dependencies import get_db
 from database.crud import create_regla, get_reglas, delete_regla, get_regla_by_id
 from database.models import Regla
-from bot.monitorBinance import validar_en_binance, create_binance_instance
+from bot.monitorBinance import validar_regla, create_binance_instance
 
 # Ruta al archivo JSON
 config_file = './config.json'
@@ -19,7 +19,8 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5173",  # Origen de React en desarrollo (Vite)
         "http://localhost:8000",  # Origen de FastAPI (opcional)
-        "http://192.168.1.51:8000"  # Añade tu IP local
+        "http://192.168.1.51:8000",  # Añade tu IP local
+        "http://192.168.1.63:8000"  # Añade tu IP local
     ],
     allow_credentials=True,
     allow_methods=["*"],  # Permite todos los métodos (GET, POST, etc.)
@@ -31,6 +32,7 @@ with open(config_file, 'r') as file:
     config_data = json.load(file)        
     api_key = config_data["binance_conection"]["API_KEY"]
     api_secret = config_data["binance_conection"]["API_SECRET"]
+    telegram_token = config_data["telegram_chat"]["TELEGRAM_TOKEN"]
 binance = create_binance_instance(api_key, api_secret)
 
 class ReglaRequest(BaseModel):
@@ -64,7 +66,7 @@ async def get_regla_validation(texto_regla: str = Query(None,title="Texto de la 
     '''
     
     try:
-        validation = validar_en_binance(binance,texto_regla)
+        validation = validar_regla(binance,texto_regla,telegram_token)
         response.status_code = status.HTTP_200_OK
         return {"validacion": validation}
     except HTTPException as e:
@@ -80,7 +82,7 @@ async def create_regla_in_db(regla: ReglaRequest, db = Depends(get_db), response
     '''
     
     try:
-        validation = validar_en_binance(binance,regla.texto_regla)
+        validation = validar_regla(binance,regla.texto_regla,telegram_token)
         if not validation:
             response.status_code = status.HTTP_400_BAD_REQUEST
             return {"error": "La regla no es valida"}
